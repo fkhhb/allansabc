@@ -92,7 +92,8 @@ visit:
   # The yellow warning box. Set show to no to remove it.
   notice:
     show: yes
-    icon: 💶
+    # Leave icon blank for no symbol at all.
+    icon:
     heading: We only take cash
     text: No cards, no phones, no exceptions. There's an ATM on Danziger Straße, two minutes away. Sorry, and thank you for not making it awkward.
 

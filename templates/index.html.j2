@@ -67,7 +67,6 @@
   },
   "geo": { "@type": "GeoCoordinates", "latitude": 52.5364792, "longitude": 13.4209021 },
   "hasMap": {{ b.map_link | tojson }},
-  "email": {{ b.links.events_email | tojson }},
   "acceptsReservations": {{ b.links.instagram | tojson }},
   "hasMenu": "https://allansabc.com/{{ menu.menus.food.file }}",
   "potentialAction": {
@@ -346,11 +345,21 @@
         <p>{{ box.text }}</p>
         <div class="btn-row">
 {% for button in box.buttons %}
+{% if button.is_email %}
+          <a class="btn btn--{{ button.style }}" href="{{ button.link }}" target="_blank" rel="noopener"
+             data-email-a="{{ b.links.events_email_a }}" data-email-b="{{ b.links.events_email_b }}"
+             data-email-subject="{{ b.links.events_subject }}" data-email-body="{{ b.links.events_body }}">{{ button.label }}</a>
+{% else %}
           <a class="btn btn--{{ button.style }}" href="{{ button.link }}"{% if button.link.startswith('http') %} target="_blank" rel="noopener"{% endif %}>{{ button.label }}</a>
+{% endif %}
 {% endfor %}
         </div>
 {% if box.show_email_underneath %}
-        <p class="action__note"><a href="mailto:{{ b.links.events_email }}">{{ b.links.events_email }}</a></p>
+        <p class="action__note">
+          <a href="{{ b.links.instagram }}" target="_blank" rel="noopener"
+             data-email-a="{{ b.links.events_email_a }}" data-email-b="{{ b.links.events_email_b }}"
+             data-email-text>Message us on Instagram</a>
+        </p>
 {% endif %}
       </li>
 {% endfor %}
@@ -379,7 +388,9 @@
 
 {% if s.visit.notice.show %}
         <div class="notice">
+{% if s.visit.notice.icon %}
           <span class="notice__icon" aria-hidden="true">{{ s.visit.notice.icon }}</span>
+{% endif %}
           <div>
             <strong>{{ s.visit.notice.heading }}</strong>
             <p>{{ s.visit.notice.text }}</p>
@@ -458,7 +469,9 @@
           <li><a href="{{ b.links.instagram }}" target="_blank" rel="noopener">Instagram →</a></li>
           <li><a href="{{ b.links.facebook }}" target="_blank" rel="noopener">Facebook →</a></li>
           <li><a href="{{ b.links.order_online }}" target="_blank" rel="noopener">Order on Wolt →</a></li>
-          <li><a href="mailto:{{ b.links.events_email }}">Events: email us →</a></li>
+          <li><a href="{{ b.links.instagram }}" target="_blank" rel="noopener"
+                 data-email-a="{{ b.links.events_email_a }}" data-email-b="{{ b.links.events_email_b }}"
+                 data-email-subject="{{ b.links.events_subject }}" data-email-body="{{ b.links.events_body }}">Events: email us →</a></li>
         </ul>
       </div>
     </div>

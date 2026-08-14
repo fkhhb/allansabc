@@ -64,6 +64,43 @@
   var year = document.getElementById('year');
   if (year) year.textContent = String(new Date().getFullYear());
 
+  /* --- Email de-obfuscation -----------------------------------------------
+     The address is not in the HTML. It arrives base64-encoded and reversed,
+     split across two attributes, and is only ever assembled here. Harvesters
+     that pattern-match the raw page find nothing to take.
+
+     Until this runs, every one of these links points at the Instagram DM, so
+     a visitor without JavaScript still has a working way to get in touch. */
+  function decodeEmail(el) {
+    var joined = (el.getAttribute('data-email-a') || '') +
+                 (el.getAttribute('data-email-b') || '');
+    if (!joined) return '';
+    try {
+      return atob(joined.split('').reverse().join(''));
+    } catch (e) {
+      return '';   // malformed: leave the Instagram fallback in place
+    }
+  }
+
+  document.querySelectorAll('[data-email-a]').forEach(function (el) {
+    var address = decodeEmail(el);
+    if (!address) return;
+
+    var subject = el.getAttribute('data-email-subject');
+    var body = el.getAttribute('data-email-body');
+    var href = 'mailto:' + address;
+    if (subject) href += '?subject=' + subject;
+    if (body) href += (subject ? '&' : '?') + 'body=' + body;
+
+    el.setAttribute('href', href);
+    // mailto: must not open in a new tab; it would leave a blank window behind.
+    el.removeAttribute('target');
+    el.removeAttribute('rel');
+
+    // Where the address itself was the link text, show it now that we have it.
+    if (el.hasAttribute('data-email-text')) el.textContent = address;
+  });
+
   /* --- Food carousel ------------------------------------------------------
      The track scrolls natively, so swipe and trackpad already work without
      this. All we add is a pair of arrows, and we only show them when the

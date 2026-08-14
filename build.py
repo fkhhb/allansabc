@@ -13,8 +13,10 @@ should name the file, and say what to do about it.
 """
 from __future__ import annotations
 
+import base64
 import re
 import sys
+from urllib.parse import quote
 from pathlib import Path
 
 try:
@@ -171,12 +173,14 @@ def apply_defaults(data: dict) -> None:
     sections["book"].setdefault("boxes", [])
     sections["visit"].setdefault("facts", [])
     sections["visit"].setdefault("notice", {}).setdefault("show", False)
+    sections["visit"]["notice"].setdefault("icon", "")
 
     for box in sections["book"]["boxes"]:
         box.setdefault("icon", "")
         box.setdefault("show_email_underneath", False)
         for button in box.setdefault("buttons", []):
             button.setdefault("style", "primary")
+            button.setdefault("is_email", False)
 
     for day in data["opening_hours"]["days"]:
         day.setdefault("closed", False)
@@ -247,18 +251,35 @@ def add_derived(data: dict) -> None:
         else:
             data["menu"]["kicker"] = "Brunch"
 
-    # "EMAIL" in a button link is shorthand for the events mailto.
+    # --- Email obfuscation -------------------------------------------------
+    # The address must not appear anywhere in the delivered HTML, or address
+    # harvesters scrape it straight off the page. It is base64-encoded, the
+    # string reversed, then split across two attributes; main.js reassembles it
+    # and writes the real mailto: on load.
+    #
+    # This defeats automated harvesters that pattern-match raw HTML, which is
+    # what sends spam. It is NOT encryption: anything running a real browser
+    # can still read the address once the script has run. That is the accepted
+    # trade-off, and the reason the address is also kept out of the JSON-LD.
     email = basics["links"].get("events_email", "")
-    subject = "Event%20enquiry%20at%20Allan%27s%20ABC"
-    body = ("Hi%20Allan%2C%0A%0AI%27d%20like%20to%20ask%20about%20an%20event%20"
-            "at%20Allan%27s%20ABC.%0A%0ADate%3A%0ANumber%20of%20guests%3A%0A"
-            "What%20we%27re%20celebrating%3A%0A%0AThanks%21%0A")
-    basics["links"]["events_mailto"] = f"mailto:{email}?subject={subject}&body={body}"
+    encoded = base64.b64encode(email.encode("utf-8")).decode("ascii")[::-1]
+    half = len(encoded) // 2
+    basics["links"]["events_email_a"] = encoded[:half]
+    basics["links"]["events_email_b"] = encoded[half:]
 
+    subject = "Event enquiry at Allan's ABC"
+    body = ("Hi Allan,\n\nI'd like to ask about an event at Allan's ABC.\n\n"
+            "Date:\nNumber of guests:\nWhat we're celebrating:\n\nThanks!\n")
+    basics["links"]["events_subject"] = quote(subject)
+    basics["links"]["events_body"] = quote(body)
+
+    # Without JavaScript the buttons fall back to the Instagram DM, which is a
+    # real way to reach them, rather than to a dead link.
     for box in data["sections"].get("book", {}).get("boxes", []) or []:
         for button in box.get("buttons", []) or []:
             if button.get("link") == "EMAIL":
-                button["link"] = basics["links"]["events_mailto"]
+                button["link"] = basics["links"]["instagram"]
+                button["is_email"] = True
 
     # The scrolling strip is duplicated so the loop can run seamlessly.
     words = basics.get("scrolling_words") or []

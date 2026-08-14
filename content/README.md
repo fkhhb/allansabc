@@ -172,3 +172,24 @@ open the file's **History** and revert to the previous version.
 
 Nothing important. They just keep the files in a sensible reading order:
 basics, then hours, then menu, then photos, then everything else.
+
+---
+
+## The events email
+
+The address lives in `1-the-basics.yml` under `events_email`. Change it there
+and every link on the site follows.
+
+It is deliberately **not written into the website's code**. It gets scrambled
+when the site is built, and unscrambled in the visitor's browser when the page
+loads. That way the address-harvesting robots that trawl websites for email
+addresses to spam find nothing to take, but a real person clicking "Email us"
+gets their mail app opening with the address and a short template already
+filled in.
+
+Worth knowing: this stops the automated harvesting that causes spam. It is not
+a secret. Anyone determined enough can still read the address off the page, and
+of course anyone you email can see it.
+
+If a visitor has JavaScript switched off, those buttons quietly fall back to
+your Instagram DMs instead, so nobody hits a dead end.
