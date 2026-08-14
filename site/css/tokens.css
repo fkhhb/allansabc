@@ -1,0 +1,89 @@
+/* ==========================================================================
+   Allan's ABC — design tokens
+   Single source of truth for colour, type and spacing.
+   Values traced to brand/BRAND.md. Change here, the whole site follows.
+   ========================================================================== */
+
+:root {
+  /* --- Core palette (client brand board) --- */
+  --abc-coral:  #FF7B6B;
+  --abc-teal:   #00928A;
+  --abc-yellow: #FFDB4D;
+  --abc-cream:  #FFF7E6;
+  --abc-ink:    #1A1A1A;
+
+  /* --- Derived support tones --- */
+  --abc-coral-dark: #E85F4F;
+  --abc-coral-soft: #FFE4DF;
+  --abc-teal-dark:  #00706A;
+  --abc-teal-soft:  #D6EDEB;
+  --abc-yellow-dark:#F0C42F;
+  --abc-sand:       #F3E7CE;
+  --abc-ink-muted:  #5C5751;
+
+  /* --- Semantic roles ---
+     Text colours are pre-vetted for contrast. Use these, not the raw palette,
+     for anything that carries words. See BRAND.md §1.4. */
+  --bg:            var(--abc-cream);
+  --bg-alt:        var(--abc-teal-soft);
+  --bg-invert:     var(--abc-ink);
+  --text:          var(--abc-ink);          /* 16.33:1 on cream */
+  --text-muted:    var(--abc-ink-muted);    /*  6.71:1 on cream */
+  --text-invert:   var(--abc-cream);        /* 16.33:1 on ink   */
+  --link:          var(--abc-teal-dark);    /*  5.59:1 on cream */
+  --link-hover:    var(--abc-coral-dark);
+  --rule:          var(--abc-sand);
+
+  /* Buttons — ink on coral (6.88:1) and ink on yellow (12.84:1) only. */
+  --btn-primary-bg:       var(--abc-coral);
+  --btn-primary-bg-hover: var(--abc-coral-dark);
+  --btn-primary-text:     var(--abc-ink);
+  --btn-secondary-bg:     var(--abc-yellow);
+  --btn-secondary-text:   var(--abc-ink);
+
+  /* --- Typography --- */
+  --font-display: "Bebas Neue", "Oswald", Impact, sans-serif;
+  --font-script:  "Kaushan Script", "Brush Script MT", cursive; /* stand-in for Amalfi Coast */
+  --font-body:    "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+
+  /* Fluid scale. Bebas is narrow, so display sizes run large by design. */
+  --fs-hero:  clamp(3.25rem, 11vw, 8.5rem);
+  --fs-h1:    clamp(2.5rem, 7vw, 5rem);
+  --fs-h2:    clamp(2rem, 5vw, 3.5rem);
+  --fs-h3:    clamp(1.4rem, 3vw, 2rem);
+  --fs-lead:  clamp(1.05rem, 1.9vw, 1.35rem);
+  --fs-body:  1rem;
+  --fs-small: 0.875rem;
+  --fs-micro: 0.75rem;
+
+  /* Bebas needs open tracking and tight leading or it reads as a block. */
+  --ls-display: 0.02em;
+  --lh-display: 0.95;
+  --lh-body:    1.65;
+
+  /* --- Space (8px base) --- */
+  --sp-1: 0.5rem;  --sp-2: 1rem;    --sp-3: 1.5rem;  --sp-4: 2rem;
+  --sp-5: 3rem;    --sp-6: 4rem;    --sp-7: 6rem;    --sp-8: 8rem;
+
+  --section-y: clamp(3.5rem, 9vw, 7rem);
+  --gutter:    clamp(1.25rem, 5vw, 4rem);
+  --maxw:      1240px;
+  --maxw-text: 68ch;
+
+  /* --- Form --- */
+  --radius:    14px;
+  --radius-lg: 24px;
+  --radius-pill: 999px;
+  --shadow:    0 4px 24px rgba(26, 26, 26, 0.09);
+  --shadow-lg: 0 18px 48px rgba(26, 26, 26, 0.16);
+  --ease:      cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

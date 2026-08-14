@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect width="64" height="64" rx="12" fill="#FFF7E6"/>
+  <path d="M32 54S8 40 8 24.5C8 16.5 14.5 10 22.5 10c4.2 0 8 1.9 9.5 4.6C33.5 11.9 37.3 10 41.5 10 49.5 10 56 16.5 56 24.5 56 40 32 54 32 54z" fill="#FF7B6B"/>
+  <text x="32" y="41" font-family="Bebas Neue, Impact, sans-serif" font-size="30" fill="#00706A" text-anchor="middle">A</text>
+</svg>

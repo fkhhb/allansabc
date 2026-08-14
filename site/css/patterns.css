@@ -1,0 +1,69 @@
+/* ==========================================================================
+   Allan's ABC — brand patterns
+   The three motifs from the brand board, as CSS/SVG. No image requests.
+   ========================================================================== */
+
+/* --- 1. Awning stripes -----------------------------------------------------
+   The yellow-and-white awning over the terrace. 24px bands at 90deg.
+   Used as a section top-cap and on the "takeaway" motifs. */
+.stripes {
+  background-image: repeating-linear-gradient(
+    90deg,
+    var(--abc-yellow) 0,
+    var(--abc-yellow) 24px,
+    var(--abc-cream) 24px,
+    var(--abc-cream) 48px
+  );
+}
+
+.stripe-cap {
+  height: 14px;
+  background-image: repeating-linear-gradient(
+    90deg,
+    var(--abc-yellow) 0,
+    var(--abc-yellow) 24px,
+    var(--abc-cream) 24px,
+    var(--abc-cream) 48px
+  );
+}
+
+/* Diagonal variant for the anniversary ribbon. */
+.stripes-diag {
+  background-image: repeating-linear-gradient(
+    -45deg,
+    var(--abc-yellow) 0,
+    var(--abc-yellow) 18px,
+    var(--abc-cream) 18px,
+    var(--abc-cream) 36px
+  );
+}
+
+/* --- 2. Fish ---------------------------------------------------------------
+   Teal outline fish, tiled. Sits behind the Bondi Fish Evening section at
+   low opacity so it never competes with the text over it. */
+.pattern-fish::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.13;
+  background-repeat: repeat;
+  background-size: 180px 120px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='120' viewBox='0 0 180 120'%3E%3Cg fill='none' stroke='%23FFF7E6' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M18 40c14-13 34-13 46 0 12 13 8 26-6 32-16 7-32 2-40-10-2-3-2-9 0-22z'/%3E%3Cpath d='M64 40c6-5 13-8 20-9-3 8-3 17 0 25-7-1-14-4-20-9'/%3E%3Ccircle cx='32' cy='42' r='2.6' fill='%23FFF7E6' stroke='none'/%3E%3Cpath d='M30 60c8 5 18 5 26 0'/%3E%3Cpath d='M108 88c12-11 29-11 39 0 10 11 7 22-5 27-13 6-27 2-34-8-2-3-2-8 0-19z'/%3E%3Cpath d='M147 88c5-4 11-7 17-8-3 7-3 15 0 22-6-1-12-4-17-8'/%3E%3Ccircle cx='120' cy='90' r='2.2' fill='%23FFF7E6' stroke='none'/%3E%3Cpath d='M118 105c7 4 15 4 22 0'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+/* --- 3. Scallop / wave -----------------------------------------------------
+   The sea edge. Sits at the boundary between a coloured section and the
+   cream page so the join reads as water rather than a hard rule. */
+.wave-divider {
+  display: block;
+  width: 100%;
+  height: clamp(28px, 4vw, 52px);
+  color: inherit;
+}
+
+.wave-divider svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}

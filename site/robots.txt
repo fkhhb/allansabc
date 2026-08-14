@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://allansabc.com/sitemap.xml
