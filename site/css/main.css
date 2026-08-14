@@ -719,32 +719,55 @@ h3 { font-size: var(--fs-h3); }
 .address { font-style: normal; font-size: var(--fs-lead); line-height: 1.5; }
 .address strong { display: block; font-family: var(--font-display); font-size: 1.6rem; letter-spacing: 0.03em; }
 
-/* --- Footer --------------------------------------------------------------- */
-.footer { background: var(--abc-ocean); color: var(--abc-cream); padding-block: var(--sp-6) var(--sp-4); }
-.footer a { color: var(--abc-yellow); }
-.footer a:hover { color: var(--abc-coral); }
+/* --- Footer ---------------------------------------------------------------
+   Coral ground, ink text. Coral fails against cream (2.37:1), so nothing here
+   may be light: headings, body and links are all ink. See tokens.css for the
+   vetted alternatives. */
+.footer {
+  background: var(--footer-bg);
+  color: var(--footer-text);
+  padding-block: var(--sp-6) var(--sp-4);
+}
+.footer a { color: var(--footer-text); text-decoration: underline; text-underline-offset: 3px; }
+.footer a:hover { color: var(--footer-text); text-decoration-thickness: 3px; }
 .footer__grid {
   display: grid;
   gap: var(--sp-4);
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 210px), 1fr));
 }
-.footer h3 { color: var(--abc-yellow); font-size: 1.25rem; margin-bottom: var(--sp-2); }
+.footer h3 {
+  color: var(--footer-text);
+  font-size: 1.25rem;
+  margin-bottom: var(--sp-2);
+}
 .footer li { padding-block: 0.25rem; font-size: var(--fs-small); }
 /* Inline links are only ~17px tall on their own, under the 24px minimum target
    size (WCAG 2.5.8). Padding takes them to ~29px without moving the layout. */
 .footer li a { display: inline-block; padding-block: 0.35rem; }
-.footer__logo img { width: 92px; margin-bottom: var(--sp-2); }
-.footer__tagline { font-family: var(--font-script); font-size: 1.5rem; color: var(--abc-coral); }
+/* The mark is a coral heart, so on a coral ground it vanishes. A cream chip
+   behind it keeps the logo readable without needing a second logo file. */
+.footer__logo img {
+  width: 92px;
+  margin-bottom: var(--sp-2);
+  background: var(--abc-cream);
+  border-radius: var(--radius);
+  padding: 0.55rem 0.7rem;
+}
+.footer__tagline {
+  font-family: var(--font-script);
+  font-size: 1.5rem;
+  color: var(--abc-teal-dark);   /* the logo's own teal, on coral, at display size */
+}
 .footer__bottom {
   margin-top: var(--sp-5);
   padding-top: var(--sp-3);
-  border-top: 1px solid rgba(255, 247, 230, 0.18);
+  border-top: 1px solid rgba(26, 26, 26, 0.22);
   display: flex;
   flex-wrap: wrap;
   gap: var(--sp-2);
   align-items: center;
   font-size: var(--fs-micro);
-  color: rgba(255, 247, 230, 0.6);
+  color: rgba(26, 26, 26, 0.78);
 }
 .footer__bottom p:last-child { margin-left: auto; }
 @media (max-width: 640px) { .footer__bottom p:last-child { margin-left: 0; } }

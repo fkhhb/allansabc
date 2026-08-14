@@ -21,6 +21,18 @@
        coral  on ocean =  4.76:1 (AA) */
   --abc-ocean: #063C46;
 
+  /* The footer's ground. Coral keeps the page ending bright and warm instead of
+     closing on a slab of dark. Everything on it must be INK: coral cannot carry
+     cream or white text (2.37:1).
+     Vetted alternatives, all with ink text, if you want a different mood:
+       coral      #FF7B6B   6.88:1   warm, brand primary          (current)
+       yellow     #FFDB4D  12.84:1   loudest
+       teal-soft  #D6EDEB  14.23:1   palest, airy
+       sand       #F3E7CE  14.20:1   warm neutral
+       teal       #00928A   4.54:1   logo turquoise, only just passes */
+  --footer-bg:   var(--abc-coral);
+  --footer-text: var(--abc-ink);
+
   /* --- Derived support tones --- */
   --abc-coral-dark: #E85F4F;
   --abc-coral-soft: #FFE4DF;
