@@ -58,8 +58,8 @@ event:
 # --- Photo at the bottom of the "come over" section --------------------------
 
 visit:
-  file: assets/img/bar-cash.jpg
-  description: Behind the bar, with a hand-painted cash payment sign on the wall
+  file: assets/img/visit-server.jpg
+  description: A member of the team in an apron carrying a tall iced drink to a table
 
 
 # --- The dish photos ---------------------------------------------------------
@@ -85,6 +85,9 @@ dishes:
   dish-sweet:
     file: assets/img/dish-sweet.jpg
     description: Chocolate fondant with berry coulis, figs and passionfruit
+  dish-benny-rose:
+    file: assets/img/dish-benny-rose.jpg
+    description: Eggs Benedict with dill beside a chilled bottle of rosé in an ice bucket
 
 
 # --- The gallery -------------------------------------------------------------
@@ -96,6 +99,8 @@ gallery:
     description: Cappuccino with leaf latte art in a yellow cup on a turquoise background
   - file: assets/img/g-mimosa.jpg
     description: A hand holding a mimosa coupe against a bright yellow background
+  - file: assets/img/g-mimosa-coupe.jpg
+    description: A mimosa in a coupe glass with a dried orange slice and fresh lemons
   - file: assets/img/g-spritz.jpg
     description: Two orange spritzes with citrus slices on a white table
   - file: assets/img/g-bloody-mary.jpg

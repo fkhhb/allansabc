@@ -82,6 +82,25 @@ book:
           style: primary
       show_email_underneath: yes
 
+    - icon: 🧑‍🍳
+      heading: Work with us
+      text: Always glad to hear from good people. Kitchen, floor or bar, tell us what you do and when you can start.
+      buttons:
+        - label: Send your CV
+          link: EMAIL
+          style: secondary
+          email_subject: Job application at Allan's ABC
+          email_body: |
+            Hi Allan,
+
+            I'd like to apply for a job at Allan's ABC.
+
+            Role I'm after:
+            Experience:
+            When I can start:
+
+            Thanks!
+
 
 # --- The "come over" section at the bottom -----------------------------------
 
@@ -103,8 +122,6 @@ visit:
       text: Terrace open whenever the sun is
     - icon: 🐕
       text: Dogs welcome, inside and out
-    - icon: ♿
-      text: Step-free entrance and accessible WC
     - icon: 👶
       text: Kids' menu, high chairs
     - icon: 🥡

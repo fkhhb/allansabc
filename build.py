@@ -181,6 +181,8 @@ def apply_defaults(data: dict) -> None:
         for button in box.setdefault("buttons", []):
             button.setdefault("style", "primary")
             button.setdefault("is_email", False)
+            button.setdefault("subject_enc", "")
+            button.setdefault("body_enc", "")
 
     for day in data["opening_hours"]["days"]:
         day.setdefault("closed", False)
@@ -277,9 +279,15 @@ def add_derived(data: dict) -> None:
     # real way to reach them, rather than to a dead link.
     for box in data["sections"].get("book", {}).get("boxes", []) or []:
         for button in box.get("buttons", []) or []:
-            if button.get("link") == "EMAIL":
-                button["link"] = basics["links"]["instagram"]
-                button["is_email"] = True
+            if button.get("link") != "EMAIL":
+                continue
+            button["link"] = basics["links"]["instagram"]
+            button["is_email"] = True
+            # A button may carry its own subject and body (a job application
+            # asks for different things than an event enquiry). Otherwise it
+            # inherits the event wording.
+            button["subject_enc"] = quote(button.get("email_subject") or subject)
+            button["body_enc"] = quote(button.get("email_body") or body)
 
     # The scrolling strip is duplicated so the loop can run seamlessly.
     words = basics.get("scrolling_words") or []

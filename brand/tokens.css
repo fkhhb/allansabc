@@ -70,9 +70,9 @@
      all with ink text: coral 6.59, salmon 8.33, yellow 12.30, blush 13.98. */
   --header-grad: linear-gradient(180deg, var(--abc-aqua-light), var(--abc-aqua));
   --footer-grad: linear-gradient(168deg,
-                   var(--abc-aqua-light) 0%,
-                   var(--abc-aqua) 46%,
-                   var(--abc-aqua-deep) 100%);
+                   var(--abc-yellow) 0%,
+                   var(--abc-yellow) 44%,
+                   var(--abc-yellow-dark) 100%);
   --footer-text: var(--abc-ink);
 
   /* --- Typography ---

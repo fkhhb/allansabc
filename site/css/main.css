@@ -167,8 +167,8 @@ h3 { font-size: var(--fs-h3); }
 }
 .btn--ghost:hover { background: var(--abc-wine); color: var(--abc-cream); }
 
-.btn--ghost-light { background: transparent; border-color: var(--abc-wine); color: var(--abc-wine); }
-.btn--ghost-light:hover { background: var(--abc-wine); color: var(--abc-cream); }
+.btn--ghost-light { background: transparent; border-color: var(--abc-cream); color: var(--abc-cream); }
+.btn--ghost-light:hover { background: var(--abc-cream); color: var(--abc-wine); }
 
 .btn-row { display: flex; flex-wrap: wrap; gap: var(--sp-2); align-items: center; }
 
@@ -282,40 +282,29 @@ h3 { font-size: var(--fs-h3); }
   display: grid;
   align-items: end;
   isolation: isolate;
-  color: var(--text);
+  color: var(--abc-cream);
   overflow: hidden;
 }
 .hero__media { position: absolute; inset: 0; z-index: -2; }
 .hero__media img { width: 100%; height: 100%; object-fit: cover; object-position: center 20%; }
 .hero::after {
   content: ""; position: absolute; inset: 0; z-index: -1;
-  /* Barely there. The photo is the point: sunshine, yellow awning, parasols.
-     A dark wash was making it read as mauve, so instead of dimming the picture
-     the copy sits on its own light panel and keeps its contrast there. */
-  background:
-    linear-gradient(to top,
-      rgba(110, 43, 54, 0.22) 0%,
-      rgba(110, 43, 54, 0.08) 30%,
-      rgba(255, 219, 77, 0.06) 70%,
-      rgba(255, 219, 77, 0.10) 100%);
+  /* Light at the top so the awning keeps its sunshine, heavy at the base where
+     the copy sits. The tint is #005F60: the brightest turquoise that still
+     carries cream text over the brightest pixels in this photo. Anything
+     lighter (#007D76 and up) drops the headline under 3:1. */
+  background: linear-gradient(
+    to top,
+    rgba(0, 95, 96, 0.95) 0%,
+    rgba(0, 95, 96, 0.90) 26%,
+    rgba(0, 105, 102, 0.78) 52%,
+    rgba(0, 125, 118, 0.42) 76%,
+    rgba(0, 146, 138, 0.18) 100%
+  );
 }
 
-.hero__inner { padding-block: clamp(2rem, 5vw, 4rem); }
+.hero__inner { padding-block: clamp(2.5rem, 7vw, 5rem); }
 
-/* The hero copy lives on a cream panel rather than directly on the photo.
-   That is what lets the photograph stay bright and untinted while the text
-   still clears AA comfortably: wine on cream is 9.65:1, ink on cream 15.79:1,
-   and neither depends on what is behind it. */
-.hero__panel {
-  background: rgba(255, 248, 236, 0.96);
-  backdrop-filter: blur(6px);
-  border-radius: var(--radius-lg);
-  padding: clamp(1.5rem, 3.5vw, 2.75rem);
-  max-width: min(100%, 44rem);
-  box-shadow: var(--shadow-lg);
-  /* A stripe of awning yellow along the top edge, echoing the frame. */
-  border-top: 6px solid var(--abc-yellow);
-}
 .hero__title {
   font-size: var(--fs-hero);
   /* Cool blue-white rather than the warm cream used elsewhere: it reads as sea
@@ -327,18 +316,19 @@ h3 { font-size: var(--fs-h3); }
 .hero__script {
   font-family: var(--font-script);
   font-size: clamp(1.6rem, 4.6vw, 3.4rem);
-  color: var(--abc-terracotta);
+  color: var(--abc-yellow);
   text-transform: none;
   letter-spacing: 0;
   line-height: 1.2;
   margin-bottom: var(--sp-3);
+  text-shadow: 0 2px 18px rgba(0, 40, 42, 0.45);
 }
 .hero__tagline {
   font-family: var(--font-display);
   font-size: clamp(1.05rem, 2.3vw, 1.6rem);
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--abc-ink);
+  color: var(--abc-cream);
   margin-bottom: var(--sp-4);
   /* "DAY DRINKING. GOOD TIMES." is 25 characters — 24ch orphaned "TIMES."
      onto its own line. 32ch clears the longest line with room to spare. */
@@ -348,7 +338,7 @@ h3 { font-size: var(--fs-h3); }
   display: flex; flex-wrap: wrap; gap: var(--sp-1) var(--sp-3);
   margin-top: var(--sp-4);
   font-size: var(--fs-small);
-  color: var(--text-muted);
+  color: rgba(255, 248, 236, 0.92);
 }
 .hero__meta span { display: inline-flex; align-items: center; gap: 0.4em; }
 
@@ -522,9 +512,11 @@ h3 { font-size: var(--fs-h3); }
 }
 
 /* --- Action cards (book / order / events) --------------------------------- */
+/* 250px min so the four cards sit four-across at full width, two on a
+   tablet and one on a phone. */
 .actions {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr));
   gap: var(--sp-3);
 }
 .action {
@@ -764,7 +756,7 @@ h3 { font-size: var(--fs-h3); }
 .footer__bottom {
   margin-top: var(--sp-5);
   padding-top: var(--sp-3);
-  border-top: 1px solid rgba(110, 43, 54, 0.28);
+  border-top: 1px solid rgba(110, 43, 54, 0.30);
   display: flex;
   flex-wrap: wrap;
   gap: var(--sp-2);

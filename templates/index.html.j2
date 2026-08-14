@@ -163,22 +163,20 @@
 {% if b.badge.show %}
     <p class="hero__badge">{{ b.badge.text }}</p>
 {% endif %}
-    <div class="hero__panel">
-      <h1 class="hero__title">{{ b.name }}</h1>
-      <p class="hero__script">{{ b.script_line }}</p>
-      <p class="hero__tagline">{% for line in b.tagline_lines %}{{ line }}{{ "<br>" | safe if not loop.last }}{% endfor %}</p>
+    <h1 class="hero__title">{{ b.name }}</h1>
+    <p class="hero__script">{{ b.script_line }}</p>
+    <p class="hero__tagline">{% for line in b.tagline_lines %}{{ line }}{{ "<br>" | safe if not loop.last }}{% endfor %}</p>
 
-      <div class="btn-row">
-        <a class="btn btn--primary" href="{{ b.links.instagram }}" target="_blank" rel="noopener">Book a table</a>
-        <a class="btn btn--ghost-light" href="{{ menu.menus.food.file }}" target="_blank" rel="noopener">See the food</a>
-      </div>
-
-      <p class="hero__meta">
-        <span>★ 4.4 · 1,550 Google reviews</span>
-        <span>{{ b.address.street }}, {{ b.address.area }}</span>
-        <span>Cash only</span>
-      </p>
+    <div class="btn-row">
+      <a class="btn btn--primary" href="{{ b.links.instagram }}" target="_blank" rel="noopener">Book a table</a>
+      <a class="btn btn--ghost-light" href="{{ menu.menus.food.file }}" target="_blank" rel="noopener">See the food</a>
     </div>
+
+    <p class="hero__meta">
+      <span>★ 4.4 · 1,550 Google reviews</span>
+      <span>{{ b.address.street }}, {{ b.address.area }}</span>
+      <span>Cash only</span>
+    </p>
   </div>
 </section>
 
@@ -348,7 +346,7 @@
 {% if button.is_email %}
           <a class="btn btn--{{ button.style }}" href="{{ button.link }}" target="_blank" rel="noopener"
              data-email-a="{{ b.links.events_email_a }}" data-email-b="{{ b.links.events_email_b }}"
-             data-email-subject="{{ b.links.events_subject }}" data-email-body="{{ b.links.events_body }}">{{ button.label }}</a>
+             data-email-subject="{{ button.subject_enc }}" data-email-body="{{ button.body_enc }}">{{ button.label }}</a>
 {% else %}
           <a class="btn btn--{{ button.style }}" href="{{ button.link }}"{% if button.link.startswith('http') %} target="_blank" rel="noopener"{% endif %}>{{ button.label }}</a>
 {% endif %}
