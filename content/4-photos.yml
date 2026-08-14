@@ -20,6 +20,10 @@
 #  ALWAYS write a "description:". It is read aloud to blind visitors and
 #  shown if the photo fails to load. Describe what is in the picture.
 #
+#  ABOUT THIS SET: every photo here comes from the restaurant's own Instagram,
+#  chosen so the whole site shares one look: white wood, sunshine, and the
+#  yellow / coral / turquoise the brand already uses.
+#
 # =============================================================================
 
 
@@ -27,35 +31,35 @@
 
 hero:
   file: assets/img/hero-terrace.jpg
-  description: Busy pavement terrace at Allan's ABC on Rykestraße, full tables under the trees
+  description: Yellow-and-white parasols over the pavement terrace on a bright day
 
 
 # --- The photo next to the "about us" text -----------------------------------
 
 about:
   file: assets/img/exterior-awning.jpg
-  description: Yellow-and-white striped awning and yellow bar stools outside Allan's ABC
+  description: Yellow chairs and tables set up on the terrace under the trees
 
 
 # --- Photo next to the rosé section ------------------------------------------
 
 rose:
-  file: assets/img/rose-can.jpg
-  description: ABC Rosé All Day label with a diver illustration on yellow stripes
+  file: assets/img/rose-bottle.jpg
+  description: A bottle of ABC Rosé being photographed on a white wooden table
 
 
 # --- Photo in the events / anniversary box -----------------------------------
 
 event:
-  file: assets/img/board-brunch.jpg
-  description: Chalkboard listing brunch apéro drinks and prices beside the teal bar
+  file: assets/img/team-cheers.jpg
+  description: Two of the team laughing together behind the bar with drinks in hand
 
 
 # --- Photo at the bottom of the "come over" section --------------------------
 
 visit:
-  file: assets/img/exterior-front.jpg
-  description: Shopfront of Allan's ABC with striped awning and pavement seating
+  file: assets/img/bar-cash.jpg
+  description: Behind the bar, with a hand-painted cash payment sign on the wall
 
 
 # --- The dish photos ---------------------------------------------------------
@@ -65,28 +69,22 @@ visit:
 dishes:
   dish-eggs-benny:
     file: assets/img/dish-eggs-benny.jpg
-    description: Close-up of eggs Benedict with a running yolk on a brioche bun
+    description: Eggs Benedict with hollandaise and herbs on a dark plate
   dish-benny-salmon:
     file: assets/img/dish-benny-salmon.jpg
-    description: Eggs Benedict with cured salmon, dill and hollandaise on a brioche bun
+    description: Open salmon sandwiches and a burger with salad and crisps on a blue plate
   dish-french-toast:
     file: assets/img/dish-french-toast.jpg
-    description: French toast with bacon, cream and rose petals on a yellow plate
-  dish-waffles:
-    file: assets/img/dish-waffles.jpg
-    description: Savoury open sandwich with poached egg and greens on a teal table
-  dish-croque:
-    file: assets/img/dish-croque.jpg
-    description: Toasted croque monsieur cut through, with lime and salad
-  dish-dessert:
-    file: assets/img/dish-dessert.jpg
-    description: Chocolate cake with cream, apricot and berries on a dark plate
-  dish-fish:
-    file: assets/img/dish-fish.jpg
-    description: Cured fish salad with red onion, herbs and citrus
-  dish-board:
-    file: assets/img/dish-board.jpg
-    description: Sharing board with cheese, grapes, walnuts, flatbread and chutney
+    description: A tall stack of caramelised brioche French toast
+  dish-open-toast:
+    file: assets/img/dish-open-toast.jpg
+    description: Open toast topped with poached eggs, chilli threads and leaves
+  dish-bowl:
+    file: assets/img/dish-bowl.jpg
+    description: Yoghurt bowl with peach, berries, granola and mint
+  dish-sweet:
+    file: assets/img/dish-sweet.jpg
+    description: Chocolate fondant with berry coulis, figs and passionfruit
 
 
 # --- The gallery -------------------------------------------------------------
@@ -94,23 +92,23 @@ dishes:
 #  The first and sixth photos are shown wide, the rest are square.
 
 gallery:
-  - file: assets/img/crowd-terrace.jpg
-    description: Guests eating and drinking at long outdoor tables on the terrace
-  - file: assets/img/interior-bar.jpg
-    description: Interior of Allan's ABC with teal bar, neon sign and rattan pendant lights
-  - file: assets/img/drink-frose.jpg
-    description: Hand holding a frozen rosé in a coupe glass
-  - file: assets/img/dish-board.jpg
-    description: Sharing board with cheese, grapes, walnuts, flatbread and chutney
-  - file: assets/img/drink-coffee.jpg
-    description: Cappuccino with leaf latte art in a teal cup
-  - file: assets/img/exterior-front.jpg
-    description: Shopfront of Allan's ABC with striped awning and pavement seating
-  - file: assets/img/drink-bloody-mary.jpg
-    description: Two Bloody Marys with lemon wedges on an outdoor table
-  - file: assets/img/neon-rose.jpg
-    description: Neon sign reading Rosé All Day Everyday above the bar
-  - file: assets/img/interior-room.jpg
-    description: Long communal table and teal bar inside Allan's ABC
-  - file: assets/img/drink-rose-table.jpg
-    description: Rosé being poured at a table set with sandwiches and salad
+  - file: assets/img/g-cappuccino.jpg
+    description: Cappuccino with leaf latte art in a yellow cup on a turquoise background
+  - file: assets/img/g-mimosa.jpg
+    description: A hand holding a mimosa coupe against a bright yellow background
+  - file: assets/img/g-spritz.jpg
+    description: Two orange spritzes with citrus slices on a white table
+  - file: assets/img/g-bloody-mary.jpg
+    description: Two Bloody Marys in jars with cucumber and lemon
+  - file: assets/img/g-espresso-martini.jpg
+    description: An espresso martini with three coffee beans on top
+  - file: assets/img/g-brunch-spread.jpg
+    description: A full brunch table of plates, coffees and glasses seen from above
+  - file: assets/img/g-spritz-trio.jpg
+    description: Aperol, Campari and limoncello spritzes lined up in the sun
+  - file: assets/img/g-rose-pour.jpg
+    description: Rosé being poured into a glass held up to the light
+  - file: assets/img/g-pouring.jpg
+    description: A glass being topped up beside plates of brunch
+  - file: assets/img/g-table.jpg
+    description: Brunch plates, coffees and glasses spread across a white wooden table

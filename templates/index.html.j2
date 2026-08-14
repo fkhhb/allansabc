@@ -50,7 +50,7 @@
   "@type": "Restaurant",
   "name": {{ b.name | tojson }},
   "alternateName": {{ s.footer.legal_name | tojson }},
-  "description": "Aussie brunch culture crossed with French apéro. Café by day, wine bar by night, in {{ b.address.area }}.",
+  "description": "Aussie brunch culture crossed with French apéro. Café by day, terrace all summer, in {{ b.address.area }}.",
   "url": "https://allansabc.com/",
   "image": "https://allansabc.com/{{ photos.hero.file }}",
   "servesCuisine": ["Brunch", "Australian", "French", "Mediterranean"],
@@ -226,25 +226,23 @@
       <p class="lead">{{ menu.intro }}</p>
     </div>
 
-    <ul class="cards">
-{% for dish in menu.dishes %}
-      <li class="card reveal">
-        <div class="card__media">
-          <img src="{{ dish.image.file }}" alt="{{ dish.image.description }}" loading="lazy">
-        </div>
-        <div class="card__body">
-{% if dish.tag %}
-          <span class="card__tag">{{ dish.tag }}</span>
-{% endif %}
-          <h3>{{ dish.name }}</h3>
-{% if dish.price_display %}
-          <p class="card__price">€{{ dish.price_display }}</p>
-{% endif %}
-          <p>{{ dish.description }}</p>
-        </div>
-      </li>
+    <div class="carousel" data-carousel>
+      <button class="carousel__btn carousel__btn--prev" type="button" data-carousel-prev aria-label="Previous photos">
+        <span aria-hidden="true">&#8249;</span>
+      </button>
+
+      <ul class="carousel__track" data-carousel-track tabindex="0" role="region" aria-label="Food photos, scrollable">
+{% for photo in menu.carousel_images %}
+        <li class="carousel__item">
+          <img src="{{ photo.file }}" alt="{{ photo.description }}" loading="lazy">
+        </li>
 {% endfor %}
-    </ul>
+      </ul>
+
+      <button class="carousel__btn carousel__btn--next" type="button" data-carousel-next aria-label="More photos">
+        <span aria-hidden="true">&#8250;</span>
+      </button>
+    </div>
 
     <div class="menu-cta">
       <a class="btn btn--primary" href="{{ menu.menus.food.file }}" target="_blank" rel="noopener">{{ menu.menus.food.label }}</a>

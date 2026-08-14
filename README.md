@@ -28,7 +28,7 @@ content/                  ← EDIT HERE. Menu, hours, photos, text, links.
   README.md               Plain-English guide for non-technical editors
   1-the-basics.yml        Name, address, links, tagline, about text
   2-opening-hours.yml     Hours (feeds the page, footer AND Google)
-  3-menu.yml              Dishes, prices, menu PDFs
+  3-menu.yml              Food carousel + the two menu PDFs
   4-photos.yml            Every image on the site
   5-sections.yml          Events, booking boxes, on/off switches
 
@@ -119,7 +119,8 @@ Things a human needs to decide or verify before this is fully finished:
    an image. Licence the real font and change `--font-script` in `brand/tokens.css`
    to switch everything at once.
 3. **Opening hours.** Google says Tue + Wed closed. Confirm that is permanent and
-   not seasonal, and confirm the evening/bar hours, which Google does not list.
+   not seasonal. Note the homepage's "brunch from..." line is now derived from
+   `2-opening-hours.yml`, so correcting the hours corrects the copy too.
 4. **Phone number.** None published anywhere. Bookings currently route to
    Instagram and Facebook DMs, which matches how they actually operate.
 5. **Anniversary date.** Sunday 6 September 2026, 11:00–20:00, taken from their
@@ -133,4 +134,8 @@ Things a human needs to decide or verify before this is fully finished:
 - Coral (`#FF7B6B`) is a shape colour. Text on coral is always ink `#1A1A1A`,
   never cream — cream on coral is 2.37:1 and fails badly.
 - No em dashes in site copy (client preference).
+- The dark surfaces use `--abc-ocean` (#063C46), not near-black. It is from the
+  logo's turquoise family and keeps the summer feel.
+- Prices belong in the menu PDFs only. The site links to them; it never
+  restates them, so the two can't disagree.
 - Run `python3 scripts/check_contrast.py` after touching the palette.

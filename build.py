@@ -73,7 +73,7 @@ def check_required(data: dict) -> None:
     required = {
         "the_basics": ["name", "address", "links"],
         "opening_hours": ["days"],
-        "menu": ["dishes", "menus"],
+        "menu": ["carousel", "menus"],
         "photos": ["hero", "dishes", "gallery"],
         "sections": ["visit", "footer"],
     }
@@ -88,17 +88,16 @@ def check_required(data: dict) -> None:
     if problems:
         return
 
-    # Every dish must point at a photo that actually exists in 4-photos.yml.
+    # Every carousel entry must resolve to a photo defined in 4-photos.yml.
     photos = data["photos"].get("dishes", {}) or {}
-    for dish in data["menu"].get("dishes", []) or []:
-        name = dish.get("name", "(unnamed dish)")
-        if not dish.get("description"):
-            fail(f"The dish '{name}' in 3-menu.yml has no description.")
-        ref = dish.get("photo")
-        if ref and ref not in photos:
+    carousel = data["menu"].get("carousel") or []
+    if not carousel:
+        fail("The carousel list in 3-menu.yml is empty. Add at least one photo name.")
+    for ref in carousel:
+        if ref not in photos:
             options = ", ".join(sorted(photos)) or "none defined"
             fail(
-                f"The dish '{name}' in 3-menu.yml uses photo '{ref}',\n"
+                f"The carousel in 3-menu.yml lists '{ref}',\n"
                 f"      but there is no '{ref}' in the dishes list in 4-photos.yml.\n"
                 f"      Available names: {options}"
             )
@@ -178,21 +177,6 @@ def apply_defaults(data: dict) -> None:
         for button in box.setdefault("buttons", []):
             button.setdefault("style", "primary")
 
-    for dish in data["menu"]["dishes"]:
-        dish.setdefault("tag", "")
-        # YAML reads 14.50 as the number 14.5, which would print as "€14.5".
-        # Build the display string here so whole euros stay clean ("€14") and
-        # anything with cents always shows two digits ("€14.50").
-        price = dish.get("price")
-        if price is None or price == "":
-            dish["price_display"] = ""
-        elif isinstance(price, (int, float)):
-            dish["price_display"] = (
-                f"{price:.0f}" if float(price) == int(price) else f"{price:.2f}"
-            )
-        else:
-            dish["price_display"] = str(price).lstrip("€").strip()
-
     for day in data["opening_hours"]["days"]:
         day.setdefault("closed", False)
 
@@ -241,10 +225,26 @@ def add_derived(data: dict) -> None:
             "Closed" if day.get("closed") else f"{day['open']} – {day['close']}"
         )
 
-    # Attach the resolved photo to each dish so the template stays simple.
+    # Resolve carousel names into real photo entries.
     photos = data["photos"]["dishes"]
-    for dish in data["menu"]["dishes"]:
-        dish["image"] = photos.get(dish.get("photo"), {})
+    data["menu"]["carousel_images"] = [
+        photos[name] for name in data["menu"]["carousel"] if name in photos
+    ]
+
+    # kicker: AUTO builds the opening line from the hours, so it can never drift
+    # out of step with them. Days are grouped by opening time, most common first.
+    if str(data["menu"].get("kicker", "")).strip().upper() == "AUTO":
+        by_time = {}
+        for day in data["opening_hours"]["days"]:
+            if not day.get("closed"):
+                by_time.setdefault(day["open"], []).append(str(day["day"])[:3])
+        if by_time:
+            groups = sorted(by_time.items(), key=lambda kv: (-len(kv[1]), kv[0]))
+            data["menu"]["kicker"] = "Brunch " + ", ".join(
+                f"from {time} {' '.join(days)}" for time, days in groups
+            )
+        else:
+            data["menu"]["kicker"] = "Brunch"
 
     # "EMAIL" in a button link is shorthand for the events mailto.
     email = basics["links"].get("events_email", "")
@@ -289,11 +289,11 @@ def main() -> int:
     template = env.get_template("index.html.j2")
     OUTPUT.write_text(template.render(**data), encoding="utf-8")
 
-    dishes = len(data["menu"]["dishes"])
+    dishes = len(data["menu"]["carousel_images"])
     gallery = len(data["photos"]["gallery"])
     open_days = sum(1 for d in data["opening_hours"]["days"] if not d.get("closed"))
     print("Website rebuilt successfully.")
-    print(f"  {dishes} dishes, {gallery} gallery photos, open {open_days} days a week")
+    print(f"  {dishes} carousel photos, {gallery} gallery photos, open {open_days} days a week")
     print(f"  Written to {OUTPUT.relative_to(ROOT)}")
     return 0
 

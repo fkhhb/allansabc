@@ -64,6 +64,44 @@
   var year = document.getElementById('year');
   if (year) year.textContent = String(new Date().getFullYear());
 
+  /* --- Food carousel ------------------------------------------------------
+     The track scrolls natively, so swipe and trackpad already work without
+     this. All we add is a pair of arrows, and we only show them when the
+     track genuinely overflows. */
+  document.querySelectorAll('[data-carousel]').forEach(function (carousel) {
+    var track = carousel.querySelector('[data-carousel-track]');
+    var prev = carousel.querySelector('[data-carousel-prev]');
+    var next = carousel.querySelector('[data-carousel-next]');
+    if (!track || !prev || !next) return;
+
+    function step() {
+      var item = track.querySelector('.carousel__item');
+      var gap = parseFloat(getComputedStyle(track).columnGap || '16') || 16;
+      return item ? item.getBoundingClientRect().width + gap : track.clientWidth * 0.8;
+    }
+
+    function update() {
+      var overflows = track.scrollWidth > track.clientWidth + 4;
+      prev.hidden = next.hidden = !overflows;
+      if (!overflows) return;
+      // 2px of slack: sub-pixel widths stop scrollLeft hitting the exact end.
+      prev.disabled = track.scrollLeft <= 2;
+      next.disabled = track.scrollLeft >= track.scrollWidth - track.clientWidth - 2;
+    }
+
+    prev.addEventListener('click', function () {
+      track.scrollBy({ left: -step(), behavior: 'smooth' });
+    });
+    next.addEventListener('click', function () {
+      track.scrollBy({ left: step(), behavior: 'smooth' });
+    });
+
+    track.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
+    if ('ResizeObserver' in window) new ResizeObserver(update).observe(track);
+    update();
+  });
+
   /* --- Reveal on scroll --------------------------------------------------- */
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var items = document.querySelectorAll('.reveal');

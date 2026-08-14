@@ -67,28 +67,44 @@ open: 10:00       ← wrong, comes out looking strange
 
 ---
 
-## Adding or removing a dish
+## The food carousel
 
-In `3-menu.yml`, each dish is a block starting with `- name:`. To add one, copy
-an existing block and change the words. To remove one, delete its whole block.
+The homepage does not list dishes or prices. It shows a sliding row of food
+photos and two buttons that open the real menus. That way a price only ever
+lives in one place: the PDF.
+
+To change which photos slide across, edit the `carousel` list in `3-menu.yml`:
 
 ```yaml
-  - name: Eggs Benny
-    tag: The famous one
-    description: Two poached eggs, brioche, Allan's hollandaise.
-    photo: dish-eggs-benny
+carousel:
+  - dish-eggs-benny
+  - dish-french-toast
+  - dish-benny-salmon
 ```
 
-- `tag:` is the little coloured label. Delete the line for no label.
-- `photo:` must match a name in `4-photos.yml`. If it doesn't, the build stops
-  and tells you which names are available.
-- To show a price, add a `price:` line with just the number, no € sign:
-  `price: 14.50` shows as **€14.50**, and `price: 10` shows as **€10**.
-  Leave the line out and no price shows. Right now no dish shows a price,
-  because the PDFs carry the real ones. Add prices here whenever you want them
-  on the homepage too.
+Each name must match one in the `dishes` list in `4-photos.yml`. Reorder them,
+add more, take some out. Three is the fewest that looks right; there is no
+maximum. If you type a name that doesn't exist, the build stops and lists the
+names you can use.
 
-Six dishes fill the layout neatly. Any number works.
+---
+
+## The opening-hours line above the food
+
+In `3-menu.yml` you'll see:
+
+```yaml
+kicker: AUTO
+```
+
+`AUTO` means the line is written from `2-opening-hours.yml` every time the site
+builds, so it can never end up saying something the hours don't. Right now it
+produces:
+
+> Brunch from 10:00 Mon Thu Fri, from 09:30 Sat Sun
+
+Change an opening time and that line changes with it. If you'd rather write your
+own words, just replace `AUTO` with them.
 
 ---
 

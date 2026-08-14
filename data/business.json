@@ -9,7 +9,6 @@
     ],
     "confidence_note": "Fields marked needs_confirmation are read from photos or social posts, not from an official menu or the operator. Confirm with the venue before publishing."
   },
-
   "identity": {
     "trading_name": "Allan's ABC",
     "brand_line": "Allan's Brunch & Aperitivo",
@@ -22,7 +21,6 @@
     "founded_evidence": "10-year anniversary announced for 6 Sept 2026; Facebook page created 20 Dec 2014.",
     "anniversary_2026": "10 years"
   },
-
   "location": {
     "street": "Rykestraße 13",
     "postal_code": "10405",
@@ -33,9 +31,12 @@
     "lng": 13.4209021,
     "google_place_id": "ChIJq9EdUAFOqEcRAs-Bfc4TuRc",
     "google_maps_url": "https://maps.app.goo.gl/R2DY5aFTYUW5iwvm7",
-    "nearest_landmarks": ["Kollwitzplatz", "Wasserturm Prenzlauer Berg", "Rykestraße Synagogue"]
+    "nearest_landmarks": [
+      "Kollwitzplatz",
+      "Wasserturm Prenzlauer Berg",
+      "Rykestraße Synagogue"
+    ]
   },
-
   "contact": {
     "canonical_domain": "allansabc.com",
     "canonical_url": "https://allansabc.com/",
@@ -49,17 +50,42 @@
     "email": null,
     "menu_listing": "https://speisekartenweb.de/restaurants/berlin/abc---allans-breakfast-club-%26-wine-bar-181216"
   },
-
   "hours": {
     "source": "Google Maps, 14 Aug 2026",
     "regular": [
-      { "day": "Monday",    "open": "10:00", "close": "16:00" },
-      { "day": "Tuesday",   "closed": true },
-      { "day": "Wednesday", "closed": true },
-      { "day": "Thursday",  "open": "10:00", "close": "16:00" },
-      { "day": "Friday",    "open": "10:00", "close": "16:00" },
-      { "day": "Saturday",  "open": "09:30", "close": "18:00" },
-      { "day": "Sunday",    "open": "09:30", "close": "18:00" }
+      {
+        "day": "Monday",
+        "open": "10:00",
+        "close": "16:00"
+      },
+      {
+        "day": "Tuesday",
+        "closed": true
+      },
+      {
+        "day": "Wednesday",
+        "closed": true
+      },
+      {
+        "day": "Thursday",
+        "open": "10:00",
+        "close": "16:00"
+      },
+      {
+        "day": "Friday",
+        "open": "10:00",
+        "close": "16:00"
+      },
+      {
+        "day": "Saturday",
+        "open": "09:30",
+        "close": "18:00"
+      },
+      {
+        "day": "Sunday",
+        "open": "09:30",
+        "close": "18:00"
+      }
     ],
     "caveats": [
       "Google's hours cover the brunch service only. Their own posts advertise a Bondi Fish Evening 'from 6pm till late' and a bar 'open full blast all day' on Fridays — evening hours are not reflected in the Google listing.",
@@ -67,25 +93,68 @@
       "NEEDS_CONFIRMATION: whether Tue/Wed closure is permanent or seasonal."
     ]
   },
-
   "ratings": {
-    "google": { "score": 4.4, "count": 1550, "price_band": "€20–30",
-      "distribution": { "5": 1033, "4": 277, "3": 101, "2": 56, "1": 83 } },
-    "facebook": { "recommend_percent": 92, "count": 394, "likes": 6720, "checkins": 2273 },
+    "google": {
+      "score": 4.4,
+      "count": 1550,
+      "price_band": "€20–30",
+      "distribution": {
+        "5": 1033,
+        "4": 277,
+        "3": 101,
+        "2": 56,
+        "1": 83
+      }
+    },
+    "facebook": {
+      "recommend_percent": 92,
+      "count": 394,
+      "likes": 6720,
+      "checkins": 2273
+    },
     "most_mentioned": [
-      { "term": "eggs benedict", "count": 100 },
-      { "term": "french toast", "count": 56 },
-      { "term": "cash only", "count": 50 },
-      { "term": "poached eggs", "count": 26 },
-      { "term": "croque monsieur", "count": 24 },
-      { "term": "banana bread", "count": 20 },
-      { "term": "hollandaise sauce", "count": 17 },
-      { "term": "mimosas", "count": 13 },
-      { "term": "pulled pork", "count": 13 },
-      { "term": "outdoor seating", "count": 10 }
+      {
+        "term": "eggs benedict",
+        "count": 100
+      },
+      {
+        "term": "french toast",
+        "count": 56
+      },
+      {
+        "term": "cash only",
+        "count": 50
+      },
+      {
+        "term": "poached eggs",
+        "count": 26
+      },
+      {
+        "term": "croque monsieur",
+        "count": 24
+      },
+      {
+        "term": "banana bread",
+        "count": 20
+      },
+      {
+        "term": "hollandaise sauce",
+        "count": 17
+      },
+      {
+        "term": "mimosas",
+        "count": 13
+      },
+      {
+        "term": "pulled pork",
+        "count": 13
+      },
+      {
+        "term": "outdoor seating",
+        "count": 10
+      }
     ]
   },
-
   "practical": {
     "cash_only": true,
     "cash_only_note": "'Cash-only' is flagged in Google's payment attributes and is the 3rd most-mentioned term across 1,550 reviews (50 mentions). This is the single most important practical detail to put on the website — it is the most common complaint driver.",
@@ -98,14 +167,28 @@
     "dogs_allowed": true,
     "wheelchair_accessible": true,
     "kids_menu": true,
-    "atmosphere": ["Casual", "Trendy", "Cozy"],
-    "crowd": ["LGBTQ+ friendly", "Family-friendly", "Groups", "Tourists", "Transgender safespace"],
+    "atmosphere": [
+      "Casual",
+      "Trendy",
+      "Cozy"
+    ],
+    "crowd": [
+      "LGBTQ+ friendly",
+      "Family-friendly",
+      "Groups",
+      "Tourists",
+      "Transgender safespace"
+    ],
     "parking": "Paid street parking, usually difficult to find a space",
-    "highlights": ["Great wine list", "Great coffee", "Bar onsite", "Gender-neutral restroom"]
+    "highlights": [
+      "Great wine list",
+      "Great coffee",
+      "Bar onsite",
+      "Gender-neutral restroom"
+    ]
   },
-
   "offering": {
-    "positioning": "Australian-Aussie brunch culture crossed with French bistro and Mediterranean apéro. Café by day, wine bar by night.",
+    "positioning": "Australian-Aussie brunch culture crossed with French bistro and Mediterranean apéro. Café and day-drinking spot with a terrace.",
     "signature_dishes": [
       "Eggs Benny (Eggs Benedict) — the single most-mentioned dish",
       "French toast",
@@ -119,7 +202,12 @@
       "name": "Bondi Fish Evening",
       "strapline": "Let's keep it fishy & pink.",
       "timing": "From 6pm till late (kitchen from 4pm)",
-      "menu": ["Fish burger", "Prawn cocktails", "Fresh oysters", "Fancy fries"],
+      "menu": [
+        "Fish burger",
+        "Prawn cocktails",
+        "Fresh oysters",
+        "Fancy fries"
+      ],
       "drinks": "Plenty of rosé & rosé spritz, flowing all nite",
       "note": "Matches the 'Weekday Fish Focus' block on the brand board (fish burger, poke bowls, oysters, fish & chips, seafood specials)."
     },
@@ -127,41 +215,79 @@
       "house_rose": "ABC Rosé — 'Rosé All Day' — their own labelled rosé, new vintage each year",
       "neon_sign": "Rosé All Day Everyday",
       "coffee": "Craft coffee, flagged as a Google highlight",
-      "notable": ["Frosé", "Bloody Mary", "Mimosas", "Coconut slushy", "Espresso Martini", "Citrivo spritz"]
-    }
+      "notable": [
+        "Frosé",
+        "Bloody Mary",
+        "Mimosas",
+        "Coconut slushy",
+        "Espresso Martini",
+        "Citrivo spritz"
+      ]
+    },
+    "_positioning_note": "The 'wine bar by night' framing was retired by the client on 14 Aug 2026. Do not reintroduce it; the legal name still contains 'Wine Bar' but the evening service does not run."
   },
-
   "prices_from_venue_board": {
     "_source": "Chalkboard photographed in google/gm_29.jpg — 'BRUNCH / Apéro'. NEEDS_CONFIRMATION: photo may predate current pricing.",
     "currency": "EUR",
     "items": [
-      { "name": "Bloody Mary",     "price": 9.00 },
-      { "name": "Margarita",       "price": 11.00 },
-      { "name": "Aperol",          "price": 8.00 },
-      { "name": "House Wine",      "price": 6.00 },
-      { "name": "Crémant",         "price": 8.50 },
-      { "name": "Sours",           "price": 11.00 },
-      { "name": "Espresso Martini","price": 12.00 }
+      {
+        "name": "Bloody Mary",
+        "price": 9.0
+      },
+      {
+        "name": "Margarita",
+        "price": 11.0
+      },
+      {
+        "name": "Aperol",
+        "price": 8.0
+      },
+      {
+        "name": "House Wine",
+        "price": 6.0
+      },
+      {
+        "name": "Crémant",
+        "price": 8.5
+      },
+      {
+        "name": "Sours",
+        "price": 11.0
+      },
+      {
+        "name": "Espresso Martini",
+        "price": 12.0
+      }
     ],
     "flipboard_offer": "MARGARITA O'CLOCK — WHAT ARE U WAITING FOR? — 8 EURO"
   },
-
   "events": {
     "upcoming": [
       {
         "title": "10 Years of Allan's ABC",
-        "date": "2026-09-06",
-        "day": "Sunday",
+        "date": "2026-09-05",
+        "day": "Saturday",
         "time": "11:00–20:00",
         "description": "Ten-year anniversary party. Book your spot or drop by.",
-        "source": "Instagram, 13 Aug 2026 + anniversary flyer",
+        "source": "Client confirmation, 14 Aug 2026 (supersedes the 6 Sept date on the Instagram flyer)",
         "featured": true
       }
     ],
     "recurring": [
-      { "title": "Bondi Fish Evening", "cadence": "Selected weekday evenings", "time": "From 18:00 till late" },
-      { "title": "Day Drinking Fridays", "cadence": "Fridays", "description": "Brunch from 9:30, bar open full blast all day" },
-      { "title": "Casual Sunday", "cadence": "Sundays" }
+      {
+        "title": "Bondi Fish Evening",
+        "cadence": "Selected weekday evenings",
+        "time": "From 18:00 till late"
+      },
+      {
+        "title": "Day Drinking Fridays",
+        "cadence": "Fridays",
+        "description": "Brunch from 9:30, bar open full blast all day"
+      },
+      {
+        "title": "Casual Sunday",
+        "cadence": "Sundays"
+      }
     ],
     "past_highlights": [
       "May 1st street party with DJs and the Love Deluxe pop-up",
@@ -169,7 +295,6 @@
       "Private celebrations, weddings and birthday parties on the terrace"
     ]
   },
-
   "voice": {
     "register": "Shouty, warm, a bit French, never corporate. Heavy caps. Signs off 'Team A♥️'.",
     "approved_lines": [

@@ -12,6 +12,15 @@
   --abc-cream:  #FFF7E6;
   --abc-ink:    #1A1A1A;
 
+  /* Deep ocean teal. This is the brand's dark, in place of near-black: it comes
+     from the same family as the logo turquoise and reads as summer/sea rather
+     than as a hole in the page. Used for the hero scrim, the marquee, the dark
+     panels and the footer.
+       cream  on ocean = 11.30:1 (AAA)
+       yellow on ocean =  8.89:1 (AAA)
+       coral  on ocean =  4.76:1 (AA) */
+  --abc-ocean: #063C46;
+
   /* --- Derived support tones --- */
   --abc-coral-dark: #E85F4F;
   --abc-coral-soft: #FFE4DF;
@@ -26,10 +35,10 @@
      for anything that carries words. See BRAND.md §1.4. */
   --bg:            var(--abc-cream);
   --bg-alt:        var(--abc-teal-soft);
-  --bg-invert:     var(--abc-ink);
+  --bg-invert:     var(--abc-ocean);
   --text:          var(--abc-ink);          /* 16.33:1 on cream */
   --text-muted:    var(--abc-ink-muted);    /*  6.71:1 on cream */
-  --text-invert:   var(--abc-cream);        /* 16.33:1 on ink   */
+  --text-invert:   var(--abc-cream);        /* 11.30:1 on ocean */
   --link:          var(--abc-teal-dark);    /*  5.59:1 on cream */
   --link-hover:    var(--abc-coral-dark);
   --rule:          var(--abc-sand);
@@ -68,6 +77,10 @@
   --section-y: clamp(3.5rem, 9vw, 7rem);
   --gutter:    clamp(1.25rem, 5vw, 4rem);
   --maxw:      1240px;
+
+  /* Width of the striped awning frame running down each side of the page. */
+  --frame:     clamp(7px, 1.1vw, 15px);
+  --frame-band: clamp(9px, 1.3vw, 16px);   /* height of one stripe band */
   --maxw-text: 68ch;
 
   /* --- Form --- */
