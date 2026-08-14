@@ -160,6 +160,7 @@ def apply_defaults(data: dict) -> None:
     basics.setdefault("about", {}).setdefault("paragraphs", [])
     basics["about"].setdefault("intro", "")
     basics["about"].setdefault("heading", basics.get("name", ""))
+    basics.setdefault("seo_line", basics.get("script_line", ""))
 
     # Sections default to visible: forgetting "show" should not hide the page.
     for name in ("rose", "gallery", "event", "book"):

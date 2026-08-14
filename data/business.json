@@ -224,7 +224,12 @@
         "Citrivo spritz"
       ]
     },
-    "_positioning_note": "The 'wine bar by night' framing was retired by the client on 14 Aug 2026. Do not reintroduce it; the legal name still contains 'Wine Bar' but the evening service does not run."
+    "_positioning_note": "The 'wine bar by night' framing was retired by the client on 14 Aug 2026. Do not reintroduce it; the legal name still contains 'Wine Bar' but the evening service does not run.",
+    "bakery_partners": {
+      "sourdough": "le Brot Bäckerei",
+      "gluten_free": "Jute Bäckerei, Mitte (surcharge €1.50)",
+      "_note": "The July 2026 menu PDF's text layer reads 'AERA Bäckerei'; the client corrected this to Jute Bäckerei on 14 Aug 2026. Trust the client."
+    }
   },
   "prices_from_venue_board": {
     "_source": "Chalkboard photographed in google/gm_29.jpg — 'BRUNCH / Apéro'. NEEDS_CONFIRMATION: photo may predate current pricing.",

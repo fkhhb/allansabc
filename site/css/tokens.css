@@ -2,69 +2,87 @@
    Allan's ABC — design tokens
    Single source of truth for colour, type and spacing.
    Values traced to brand/BRAND.md. Change here, the whole site follows.
+
+   PALETTE DIRECTION: Provence rosé. Salmon pink, awning yellow and
+   sun-bleached cream, with a wine dark instead of a near-black. The logo's
+   turquoise survives as an accent, not as a lead colour.
    ========================================================================== */
 
 :root {
-  /* --- Core palette (client brand board) --- */
-  --abc-coral:  #FF7B6B;
-  --abc-teal:   #00928A;
-  --abc-yellow: #FFDB4D;
-  --abc-cream:  #FFF7E6;
-  --abc-ink:    #1A1A1A;
+  /* --- Core palette --- */
+  --abc-cream:  #FFF8EC;   /* sun-bleached linen. Never pure white.          */
+  --abc-sand:   #F7E9D2;   /* warmer ground, borders, alternating sections   */
+  --abc-blush:  #FFE6DC;   /* palest rosé, section grounds                   */
+  --abc-rose:   #FFD2C4;   /* rosé in the glass                              */
+  --abc-salmon: #FF9E86;   /* the everyday pink                              */
+  --abc-coral:  #FF7B6B;   /* the brand board's coral. Buttons, the heart.   */
+  --abc-yellow: #FFDB4D;   /* the awning                                     */
+  --abc-wine:   #6E2B36;   /* the dark. A rosé bottle in shadow.             */
+  --abc-ink:    #2A1A18;   /* warm near-black, never neutral grey            */
 
-  /* Deep ocean teal. This is the brand's dark, in place of near-black: it comes
-     from the same family as the logo turquoise and reads as summer/sea rather
-     than as a hole in the page. Used for the hero scrim, the marquee, the dark
-     panels and the footer.
-       cream  on ocean = 11.30:1 (AAA)
-       yellow on ocean =  8.89:1 (AAA)
-       coral  on ocean =  4.76:1 (AA) */
-  --abc-ocean: #063C46;
+  /* Kept from the original brand board. Now an accent only: it is the colour
+     of the logo script and the bar's paintwork, but it no longer leads. */
+  --abc-teal:      #00928A;
+  --abc-teal-dark: #00706A;
 
-  /* The footer's ground. Coral keeps the page ending bright and warm instead of
-     closing on a slab of dark. Everything on it must be INK: coral cannot carry
-     cream or white text (2.37:1).
-     Vetted alternatives, all with ink text, if you want a different mood:
-       coral      #FF7B6B   6.88:1   warm, brand primary          (current)
-       yellow     #FFDB4D  12.84:1   loudest
-       teal-soft  #D6EDEB  14.23:1   palest, airy
-       sand       #F3E7CE  14.20:1   warm neutral
-       teal       #00928A   4.54:1   logo turquoise, only just passes */
-  --footer-bg:   var(--abc-coral);
-  --footer-text: var(--abc-ink);
+  /* Sun-faded aqua, the colour of the bar's paintwork after a summer. Used as
+     a gradient on the header and footer so the page opens and closes on water
+     rather than on a flat block.
+       ink  on aqua-deep = 7.82:1     wine on aqua-deep = 4.78:1
+     Do not push the ramp darker than aqua-deep: wine drops below 4.5:1. */
+  --abc-aqua:       #8ED7D2;
+  --abc-aqua-light: #A7E0DC;
+  --abc-aqua-deep:  #7DBDB9;
 
   /* --- Derived support tones --- */
-  --abc-coral-dark: #E85F4F;
-  --abc-coral-soft: #FFE4DF;
-  --abc-teal-dark:  #00706A;
-  --abc-teal-soft:  #D6EDEB;
-  --abc-yellow-dark:#F0C42F;
-  --abc-sand:       #F3E7CE;
-  --abc-ink-muted:  #5C5751;
+  --abc-coral-dark:  #D9503F;   /* decorative / large only on cream (3.85:1) */
+  --abc-terracotta:  #A8382A;   /* link hover, 6.09:1 on cream               */
+  --abc-yellow-dark: #EDB92C;
+  --abc-wine-dark:   #4A1C24;
+  --abc-ink-muted:   #6B564F;
 
   /* --- Semantic roles ---
      Text colours are pre-vetted for contrast. Use these, not the raw palette,
      for anything that carries words. See BRAND.md §1.4. */
   --bg:            var(--abc-cream);
-  --bg-alt:        var(--abc-teal-soft);
-  --bg-invert:     var(--abc-ocean);
-  --text:          var(--abc-ink);          /* 16.33:1 on cream */
-  --text-muted:    var(--abc-ink-muted);    /*  6.71:1 on cream */
-  --text-invert:   var(--abc-cream);        /* 11.30:1 on ocean */
-  --link:          var(--abc-teal-dark);    /*  5.59:1 on cream */
-  --link-hover:    var(--abc-coral-dark);
+  --bg-alt:        var(--abc-blush);
+  --bg-invert:     var(--abc-wine);
+  --text:          var(--abc-ink);          /* 15.79:1 on cream */
+  --text-muted:    var(--abc-ink-muted);    /*  6.48:1 on cream */
+  --text-invert:   var(--abc-cream);        /*  9.65:1 on wine  */
+  --link:          var(--abc-wine);         /*  9.65:1 on cream */
+  --link-hover:    var(--abc-terracotta);   /*  6.09:1 on cream */
   --rule:          var(--abc-sand);
+  --kicker:        var(--abc-wine);         /*  9.65:1 on cream */
 
-  /* Buttons — ink on coral (6.88:1) and ink on yellow (12.84:1) only. */
+  /* Buttons. Ink on every one: coral 6.59, salmon 8.33, yellow 12.30.
+     Light text on any of these fails, so never use it. */
   --btn-primary-bg:       var(--abc-coral);
-  --btn-primary-bg-hover: var(--abc-coral-dark);
+  --btn-primary-bg-hover: var(--abc-salmon);
   --btn-primary-text:     var(--abc-ink);
   --btn-secondary-bg:     var(--abc-yellow);
   --btn-secondary-text:   var(--abc-ink);
 
-  /* --- Typography --- */
+  /* Header and footer both run the aqua gradient, so the page is bracketed by
+     the same colour top and bottom. Text on them is ink; headings and links
+     are wine. Both clear AA at the darkest end of the ramp.
+     Swap --footer-grad for a flat colour if you ever want one; vetted flats,
+     all with ink text: coral 6.59, salmon 8.33, yellow 12.30, blush 13.98. */
+  --header-grad: linear-gradient(180deg, var(--abc-aqua-light), var(--abc-aqua));
+  --footer-grad: linear-gradient(168deg,
+                   var(--abc-aqua-light) 0%,
+                   var(--abc-aqua) 46%,
+                   var(--abc-aqua-deep) 100%);
+  --footer-text: var(--abc-ink);
+
+  /* --- Typography ---
+     Bebas Neue for display, Montserrat for body: the pairing from the client's
+     brand board. Fraunces was tried in its place and reverted; the condensed
+     grotesque suits the shouty, all-caps voice better than a serif did.
+     Amalfi Coast (the board's script) is commercial and not on Google Fonts,
+     so Kaushan Script stands in for it. */
   --font-display: "Bebas Neue", "Oswald", Impact, sans-serif;
-  --font-script:  "Kaushan Script", "Brush Script MT", cursive; /* stand-in for Amalfi Coast */
+  --font-script:  "Kaushan Script", "Brush Script MT", cursive; /* for Amalfi Coast */
   --font-body:    "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 
   /* Fluid scale. Bebas is narrow, so display sizes run large by design. */
@@ -77,7 +95,8 @@
   --fs-small: 0.875rem;
   --fs-micro: 0.75rem;
 
-  /* Bebas needs open tracking and tight leading or it reads as a block. */
+  /* Bebas is drawn tall and narrow: it needs open tracking and tight leading
+     or a heading reads as one solid block. */
   --ls-display: 0.02em;
   --lh-display: 0.95;
   --lh-body:    1.65;
@@ -89,18 +108,18 @@
   --section-y: clamp(3.5rem, 9vw, 7rem);
   --gutter:    clamp(1.25rem, 5vw, 4rem);
   --maxw:      1240px;
+  --maxw-text: 68ch;
 
   /* Width of the striped awning frame running down each side of the page. */
-  --frame:     clamp(7px, 1.1vw, 15px);
-  --frame-band: clamp(9px, 1.3vw, 16px);   /* height of one stripe band */
-  --maxw-text: 68ch;
+  --frame:      clamp(7px, 1.1vw, 15px);
+  --frame-band: clamp(9px, 1.3vw, 16px);
 
   /* --- Form --- */
   --radius:    14px;
-  --radius-lg: 24px;
+  --radius-lg: 26px;
   --radius-pill: 999px;
-  --shadow:    0 4px 24px rgba(26, 26, 26, 0.09);
-  --shadow-lg: 0 18px 48px rgba(26, 26, 26, 0.16);
+  --shadow:    0 4px 24px rgba(110, 43, 54, 0.10);
+  --shadow-lg: 0 18px 48px rgba(110, 43, 54, 0.18);
   --ease:      cubic-bezier(0.22, 1, 0.36, 1);
 }
 

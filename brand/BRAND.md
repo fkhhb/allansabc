@@ -1,84 +1,96 @@
 # Allan's ABC — Brand Reference
 
-**Allan's Brunch & Aperitivo** · ABC — Allan's Breakfast Club & Wine Bar
+**Allan's ABC** · ABC - Allan's Breakfast Club & Wine Bar
 Rykestraße 13, 10405 Berlin (Prenzlauer Berg)
 
-> Day drinking. Good times. Fish focused. Always.
+> Day drinking. Provence rosé. Good times, always.
+
+**Positioning:** the one and only rosé café in Berlin. Australian brunch cooked
+by a Frenchman, a sunny terrace, and a fridge full of Provence rosé poured from
+eleven in the morning. Not a wine bar by night — that service was retired in
+August 2026 and must not reappear in copy.
 
 ---
 
 ## 1. Colour repository
 
-### 1.1 Core palette (authoritative — from the client brand board)
+The palette moved in August 2026 from a teal-led scheme to **Provence rosé**:
+salmon pink, awning yellow, sun-bleached cream, with a wine dark in place of
+near-black. The logo's turquoise survives as an accent, not as a lead.
 
-| Token | Hex | RGB | Role |
-|---|---|---|---|
-| `--abc-coral` | `#FF7B6B` | 255, 123, 107 | Primary brand colour. The heart, the "A", headline accents, CTAs. |
-| `--abc-teal` | `#00928A` | 0, 146, 138 | Secondary. Script logotype, section grounds, the venue's own paintwork. |
-| `--abc-yellow` | `#FFDB4D` | 255, 219, 77 | Accent / energy. The awning stripe, the bar stools, highlights. |
-| `--abc-cream` | `#FFF7E6` | 255, 247, 230 | Page background. Warm paper, never pure white. |
-| `--abc-ink` | `#1A1A1A` | 26, 26, 26 | Body text, footer ground. Never pure black on cream. |
+### 1.1 Core palette
 
-### 1.2 Sampled from real assets (verification)
-
-These were measured off the actual logo file and venue photography. They confirm the
-board palette is drawn from the real venue rather than invented.
-
-| Source | Sampled | Nearest core token | Note |
-|---|---|---|---|
-| Logo heart (`ig_07`) | `#FD947D` | `--abc-coral` | JPEG-softened; board value is the true spec. |
-| Logo script (`ig_07`) | `#3D7C76` | `--abc-teal` | Rendered over coral, so reads darker. |
-| Bar / wall panelling | `#60A0A0` | `--abc-teal` (tinted) | The real teal woodwork, sun-faded. |
-| Awning + stools | `#D0B070` → `#FFDB4D` | `--abc-yellow` | Warm yellow, photographed in daylight. |
-
-**Conclusion:** use the board values as spec. The sampled values are what the brand
-looks like *in the wild* and are useful for choosing photography that sits well
-against the palette.
-
-### 1.3 Derived / support tones (built for the website, not on the board)
-
-Needed for real UI: hovers, borders, shadows, muted text. All derived from the core five.
-
-| Token | Hex | Derivation | Use |
-|---|---|---|---|
-| `--abc-coral-dark` | `#E85F4F` | coral, −12% L | Button hover / pressed. |
-| `--abc-coral-soft` | `#FFE4DF` | coral @ 18% on cream | Tinted cards, badges. |
-| `--abc-teal-dark` | `#00706A` | teal, −10% L | Teal button hover, footer links. |
-| `--abc-teal-soft` | `#D6EDEB` | teal @ 15% on cream | Alternating section ground. |
-| `--abc-yellow-dark` | `#F0C42F` | yellow, −8% L | Stripe shadow, hover. |
-| `--abc-sand` | `#F3E7CE` | cream, −5% L | Borders, dividers, subtle fills. |
-| `--abc-ink-muted` | `#5C5751` | ink @ 70% on cream | Secondary body copy. |
-
-### 1.4 Contrast — checked, not guessed
-
-WCAG AA needs 4.5:1 for body text, 3:1 for large text (≥24px or ≥19px bold).
-
-Measured, not estimated — recompute with `scripts/check_contrast.py` after any palette change.
-
-| Pair | Ratio | Verdict |
+| Token | Hex | Role |
 |---|---|---|
-| ink `#1A1A1A` on cream `#FFF7E6` | **16.33:1** | ✅ AAA — default body |
-| cream on ink `#1A1A1A` | **16.33:1** | ✅ AAA — footer |
-| ink on yellow `#FFDB4D` | **12.84:1** | ✅ AAA — ink-on-yellow buttons |
-| ink-muted `#5C5751` on cream | **6.71:1** | ✅ AA — secondary copy |
-| ink on coral `#FF7B6B` | **6.88:1** | ✅ AA — **the** coral-button combination |
-| teal-dark `#00706A` on cream | **5.59:1** | ✅ AA — links and body |
-| cream on teal-dark `#00706A` | **5.59:1** | ✅ AA |
-| teal-dark on yellow `#FFDB4D` | **4.39:1** | ⚠️ Large text only |
-| teal `#00928A` on cream | **3.60:1** | ⚠️ **Large text / headings only.** Not for body. |
-| cream on teal `#00928A` | **3.60:1** | ⚠️ Large text only |
-| coral-dark `#E85F4F` on cream | **3.19:1** | ⚠️ Large text only |
-| coral `#FF7B6B` on cream | **2.37:1** | ❌ **Decorative only.** Never text. |
-| cream on coral `#FF7B6B` | **2.37:1** | ❌ **Never white/cream text on coral.** |
+| `--abc-cream` | `#FFF8EC` | Page ground. Sun-bleached linen, never pure white. |
+| `--abc-sand` | `#F7E9D2` | Warmer ground, borders, alternating sections. |
+| `--abc-blush` | `#FFE6DC` | Palest rosé. Section grounds. |
+| `--abc-rose` | `#FFD2C4` | Rosé in the glass. Tags, accents on dark. |
+| `--abc-salmon` | `#FF9E86` | The everyday pink. Badges, button hover. |
+| `--abc-coral` | `#FF7B6B` | From the client brand board. Buttons, the heart. |
+| `--abc-yellow` | `#FFDB4D` | The awning. |
+| `--abc-wine` | `#6E2B36` | The dark. A rosé bottle in shadow. Headings, panels. |
+| `--abc-ink` | `#2A1A18` | Body text. Warm near-black, never neutral grey. |
 
-**The three rules that matter:**
-1. **Coral is a shape colour, not a text colour.** Coral fills, **ink** text on top —
-   never cream or white, which fails at 2.37:1. This is the easiest mistake to make
-   with this palette because coral *looks* dark enough. It isn't.
-2. **Teal at full strength is for headings.** Use `--abc-teal-dark` whenever teal
-   carries body-size text or a link.
-3. **Yellow only ever carries ink.** Teal-dark on yellow squeaks by at large sizes;
-   nothing else clears.
+### 1.2 Accent and support
+
+| Token | Hex | Role |
+|---|---|---|
+| `--abc-aqua` | `#8ED7D2` | Header and footer gradient. Sun-faded bar paintwork. |
+| `--abc-aqua-light` | `#A7E0DC` | Top of that gradient. |
+| `--abc-aqua-deep` | `#7DBDB9` | Bottom of it. **Do not go darker** — wine text drops below 4.5:1. |
+| `--abc-teal` / `--abc-teal-dark` | `#00928A` / `#00706A` | The logo script colour. Accent only now. |
+| `--abc-terracotta` | `#A8382A` | Link hover. |
+| `--abc-ink-muted` | `#6B564F` | Secondary copy. |
+
+### 1.3 Contrast — measured, not guessed
+
+Run `python3 scripts/check_contrast.py` after any palette change. It runs in CI
+and fails the build, so a change that breaks contrast never reaches the site.
+
+| Pairing | Ratio | |
+|---|---|---|
+| ink on cream | **15.79:1** | ✅ body |
+| ink on blush | **13.98:1** | ✅ body |
+| ink on sand | **13.93:1** | ✅ body |
+| ink on rose | **12.12:1** | ✅ body |
+| ink on yellow | **12.30:1** | ✅ buttons |
+| header/footer: ink on aqua | **10.16:1** | ✅ body |
+| link/kicker: wine on cream | **9.65:1** | ✅ body |
+| cream on wine | **9.65:1** | ✅ dark panels |
+| button hover: ink on salmon | **8.33:1** | ✅ body |
+| footer: ink on aqua-deep | **7.82:1** | ✅ body |
+| kicker on wine: yellow | **7.51:1** | ✅ |
+| accent on wine: rose | **7.40:1** | ✅ |
+| button: ink on coral | **6.59:1** | ✅ body |
+| secondary copy: ink-muted on cream | **6.48:1** | ✅ body |
+| link hover: terracotta on cream | **6.09:1** | ✅ body |
+| footer link: wine on aqua-deep | **4.78:1** | ✅ body, and the floor of the aqua ramp |
+| coral as text on cream | **2.40:1** | ❌ decorative only |
+| cream on coral | **2.40:1** | ❌ never |
+| salmon as text on cream | **1.90:1** | ❌ decorative only |
+
+**The four rules that matter:**
+1. **Coral and salmon are shape colours.** Text on them is always **ink** —
+   never cream or white, which fails at 2.40:1. Coral *looks* dark enough. It isn't.
+2. **Wine is the heading and link colour**, and the only dark ground.
+3. **Never push the aqua ramp past `#7DBDB9`.** Wine text stops clearing 4.5:1.
+4. **Yellow only ever carries ink.**
+
+### 1.4 The hero scrim
+
+The hero photo is bright and yellow, so the wash over it is doing real work.
+It is two layers, not one: a vertical gradient under the copy, plus a
+horizontal one weighting it to the left where the words sit. That keeps the
+top-right of the frame sunny so the awning still reads as yellow.
+
+Checked by compositing the scrim over the **brightest** pixels in the photo
+(a sunlit white awning stripe and a yellow parasol): every piece of hero text
+clears its requirement, with the headline at 5.18:1 on the left and 3.41:1 at
+its right edge, which passes AA for large text at 48px+.
+
+If you change the hero photo, re-check this. A darker photo can take a lighter
+scrim; a brighter one cannot.
 
 ---
 
@@ -90,65 +102,60 @@ Measured, not estimated — recompute with `scripts/check_contrast.py` after any
 | Script | **Amalfi Coast** | **Kaushan Script** (Google Fonts) | ⚠️ **substituted** |
 | Body | **Montserrat** | Montserrat (Google Fonts) | ✅ exact |
 
-> ⚠️ **Amalfi Coast is a commercial font and is not available on Google Fonts.**
-> The site uses **Kaushan Script** as the closest free brush-script stand-in.
-> The wordmark itself is used as an **image** (`allans-heart-logo.png`), so the real
-> Amalfi Coast lettering is preserved wherever the logo appears. If you licence
-> Amalfi Coast for web, swap `--font-script` in `brand/tokens.css` and the whole site
-> picks it up.
+> ⚠️ **Amalfi Coast is a commercial font and is not on Google Fonts.** Kaushan
+> Script stands in. The wordmark itself is an **image**, so the real Amalfi
+> Coast lettering survives wherever the logo appears. Licence it for web and
+> change `--font-script` in `tokens.css` to switch everything at once.
 
-**Scale** (set in `tokens.css`, fluid via `clamp()`):
-Bebas is drawn tall and narrow — it needs wider letter-spacing than a normal sans
-or it reads as a solid block. All Bebas headings carry `letter-spacing: 0.02em`
-and `line-height: 0.95`.
+**Fraunces was trialled** as a warmer, Provence-leaning serif in August 2026 and
+reverted: the condensed grotesque suits the shouty all-caps voice better.
+
+**Scale:** Bebas is drawn tall and narrow, so it needs open tracking
+(`0.02em`) and tight leading (`0.95`) or a heading reads as one solid block.
 
 ---
 
 ## 3. Patterns & textures
 
-Three, all from the board, all reproduced as CSS/SVG in `site/css/patterns.css`:
-
-1. **Yellow stripes** — the awning. `repeating-linear-gradient`, 24px bands,
-   yellow on cream. Used as section top-caps and the takeaway-bag motif.
-2. **Fish line-drawings** — teal outline fish, tiled. Used at low opacity behind
-   the Fish Evening section.
-3. **Scallop / wave** — teal arcs. Used as a section divider (the "sea" edge).
+1. **Awning stripes** — yellow and cream, 24px bands. Also used as a **frame
+   down both page edges**, painted on `<html>` with `<body>` inset by a margin.
+2. **Fish line-drawings** — teal outline fish. Currently unused; belongs to the
+   held Fish Evening module.
+3. **Scallop / wave** — the sea edge, for section joins.
 
 ---
 
 ## 4. Logo
 
-`assets/images/logo/allans-heart-logo.png` — coral heart, teal brush script "Allan's",
-background knocked out to transparent. 838 × 751px.
+`site/assets/logo/allans-heart-logo.png` — coral heart, teal brush script
+"Allan's", background knocked out. 520 × 466px.
 
-**Clear space:** ≥ 25% of the logo's height on all sides.
-**Minimum size:** 64px wide on screen — below that the script closes up.
-**Do not:** recolour, add a drop shadow, place on a busy photo without a scrim, or
-stretch. On photography, use the cream or coral lockup over a dark scrim.
-
-Secondary marks in use on social: the "A♥ Brunch & Aperitivo" stacked lockup
-(coral A, teal script), and an older circular "BERLIN / ABC / ALLAN'S" badge.
+**Clear space:** ≥ 25% of its height. **Minimum:** 64px wide.
+**Never** recolour, stretch, or place on a busy photo without a scrim.
+On a coral or salmon ground the heart disappears — put it on a cream chip
+(as the footer does).
 
 ---
 
 ## 5. Voice
 
-Shouty, warm, a bit French, never corporate. Heavy caps. Real punctuation optional.
-Signs off **"Team A♥️"**.
+Shouty, warm, a bit French, never corporate. Heavy caps. Signs off **"Team A♥️"**.
 
-Lines pulled from the board and their own posts — all safe to reuse:
+Lines from the brand board and their own posts, all safe to reuse:
 
-- Eat fish. Drink rosé. Be happy.
-- Day drinking. Good times. Fish focused. Always.
 - Rosé all day, everyday.
+- Drink Provence water.
+- The one and only rosé café in Berlin.
+- Day drinking. Good times. Always.
 - You look thirsty. (We can help.)
-- Fresh fish every day.
-- Weekdays are for fish & apéro.
-- Let's keep it fishy & pink.
+- Welcome to the beach house.
+- Drink pink.
+- Let's sin till late.
 - Good food, good company, beach vibes.
 - Margarita o'clock — what are u waiting for?
-- Fight for your right to party.
-- Fun. Fresh. A little French. A lot of fish.
+- Fun. Fresh. A little French.
 
-**Do not** write in polished restaurant-marketing English ("nestled in the heart of
+**Do not** write polished restaurant-marketing English ("nestled in the heart of
 Prenzlauer Berg…"). It is the opposite of this brand.
+
+**Do not** describe the place as a wine bar by night. That service has ended.

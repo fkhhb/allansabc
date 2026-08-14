@@ -11,31 +11,45 @@ Exits non-zero if a pairing declared `body` or `ui` drops below its required rat
 import sys
 
 PALETTE = {
+    "cream":      "#FFF8EC",
+    "sand":       "#F7E9D2",
+    "blush":      "#FFE6DC",
+    "rose":       "#FFD2C4",
+    "salmon":     "#FF9E86",
     "coral":      "#FF7B6B",
-    "teal":       "#00928A",
     "yellow":     "#FFDB4D",
-    "cream":      "#FFF7E6",
-    "ink":        "#1A1A1A",
-    "coral-dark": "#E85F4F",
-    "teal-dark":  "#00706A",
-    "ink-muted":  "#5C5751",
+    "wine":       "#6E2B36",
+    "ink":        "#2A1A18",
+    "terracotta": "#A8382A",
+    "ink-muted":  "#6B564F",
+    "aqua":       "#8ED7D2",
+    "aqua-deep":  "#7DBDB9",
 }
 
 # (label, fg, bg, requirement)
 #   body  -> 4.5:1   large -> 3.0:1   decorative -> no requirement
 CHECKS = [
-    ("body text",              "ink",       "cream",     "body"),
-    ("footer text",            "cream",     "ink",       "body"),
-    ("secondary copy",         "ink-muted", "cream",     "body"),
-    ("link",                   "teal-dark", "cream",     "body"),
-    ("primary button",         "ink",       "coral",     "body"),
-    ("secondary button",       "ink",       "yellow",    "body"),
-    ("text on teal panel",     "cream",     "teal-dark", "body"),
-    ("heading on cream",       "teal",      "cream",     "large"),
-    ("heading on teal panel",  "cream",     "teal",      "large"),
-    ("kicker on yellow",       "teal-dark", "yellow",    "large"),
-    ("coral as text",          "coral",     "cream",     "decorative"),
-    ("cream on coral",         "cream",     "coral",     "decorative"),
+    ("body text",               "ink",        "cream",     "body"),
+    ("secondary copy",          "ink-muted",  "cream",     "body"),
+    ("link",                    "wine",       "cream",     "body"),
+    ("link hover",              "terracotta", "cream",     "body"),
+    ("kicker",                  "wine",       "cream",     "body"),
+    ("body on blush panel",     "ink",        "blush",     "body"),
+    ("body on rose panel",      "ink",        "rose",      "body"),
+    ("body on sand panel",      "ink",        "sand",      "body"),
+    ("primary button",          "ink",        "coral",     "body"),
+    ("primary button hover",    "ink",        "salmon",    "body"),
+    ("secondary button",        "ink",        "yellow",    "body"),
+    ("text on wine panel",      "cream",      "wine",      "body"),
+    ("accent on wine panel",    "rose",       "wine",      "body"),
+    ("kicker on wine panel",    "yellow",     "wine",      "body"),
+    ("header text on aqua",     "ink",        "aqua",      "body"),
+    ("footer text on aqua-deep","ink",        "aqua-deep", "body"),
+    ("footer link on aqua-deep","wine",       "aqua-deep", "body"),
+    ("footer head on aqua",     "wine",       "aqua",      "body"),
+    ("salmon as text",          "salmon",     "cream",     "decorative"),
+    ("coral as text",           "coral",      "cream",     "decorative"),
+    ("cream on coral",          "cream",      "coral",     "decorative"),
 ]
 
 REQUIRED = {"body": 4.5, "large": 3.0, "decorative": 0.0}

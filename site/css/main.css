@@ -51,14 +51,14 @@ ul, ol { list-style: none; padding: 0; }
 button { font: inherit; cursor: pointer; }
 
 :focus-visible {
-  outline: 3px solid var(--abc-teal-dark);
+  outline: 3px solid var(--abc-wine);
   outline-offset: 3px;
   border-radius: 4px;
 }
 
 .skip-link {
   position: absolute; left: -9999px; top: 0; z-index: 200;
-  background: var(--abc-ink); color: var(--abc-cream);
+  background: var(--abc-wine); color: var(--abc-cream);
   padding: var(--sp-2) var(--sp-3); border-radius: 0 0 var(--radius) 0;
 }
 .skip-link:focus { left: 0; }
@@ -75,6 +75,7 @@ h1, h2, h3, .display {
   letter-spacing: var(--ls-display);
   line-height: var(--lh-display);
   text-transform: uppercase;
+  color: var(--abc-wine);
 }
 h1 { font-size: var(--fs-h1); }
 h2 { font-size: var(--fs-h2); }
@@ -96,7 +97,7 @@ h3 { font-size: var(--fs-h3); }
   font-weight: 700;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--abc-teal-dark);
+  color: var(--kicker);
   margin-bottom: var(--sp-2);
 }
 .kicker--on-dark { color: var(--abc-yellow); }
@@ -118,10 +119,12 @@ h3 { font-size: var(--fs-h3); }
 .section { padding-block: var(--section-y); position: relative; }
 .section--tight { padding-block: calc(var(--section-y) * 0.6); }
 
-.section--teal { background: var(--abc-teal); color: var(--abc-cream); }
-.section--teal h2, .section--teal h3 { color: var(--abc-cream); }
-.section--soft { background: var(--abc-teal-soft); }
+.section--wine { background: var(--abc-wine); color: var(--abc-cream); }
+.section--wine h2, .section--wine h3 { color: var(--abc-cream); }
+.section--wine .kicker { color: var(--abc-yellow); }
+.section--soft { background: var(--abc-blush); }
 .section--sand { background: var(--abc-sand); }
+.section--rose { background: var(--abc-rose); }
 
 .section-head { max-width: var(--maxw-text); margin-bottom: var(--sp-5); }
 .section-head h2 { margin-bottom: var(--sp-2); }
@@ -160,19 +163,19 @@ h3 { font-size: var(--fs-h3); }
 .btn--ghost {
   background: transparent;
   border-color: currentColor;
-  color: var(--abc-ink);
+  color: var(--abc-wine);
 }
-.btn--ghost:hover { background: var(--abc-ink); color: var(--abc-cream); }
+.btn--ghost:hover { background: var(--abc-wine); color: var(--abc-cream); }
 
-.btn--ghost-light { background: transparent; border-color: var(--abc-cream); color: var(--abc-cream); }
-.btn--ghost-light:hover { background: var(--abc-cream); color: var(--abc-ink); }
+.btn--ghost-light { background: transparent; border-color: var(--abc-wine); color: var(--abc-wine); }
+.btn--ghost-light:hover { background: var(--abc-wine); color: var(--abc-cream); }
 
 .btn-row { display: flex; flex-wrap: wrap; gap: var(--sp-2); align-items: center; }
 
 /* --- Header --------------------------------------------------------------- */
 .header {
   position: sticky; top: 0; z-index: 100;
-  background: rgba(255, 247, 230, 0.94);
+  background: rgba(255, 248, 236, 0.95);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--rule);
   transition: box-shadow 0.25s var(--ease);
@@ -192,7 +195,7 @@ h3 { font-size: var(--fs-h3); }
   font-family: var(--font-display);
   font-size: 1.35rem;
   letter-spacing: 0.04em;
-  color: var(--abc-ink);
+  color: var(--abc-wine);
   line-height: 1;
 }
 
@@ -209,7 +212,7 @@ h3 { font-size: var(--fs-h3); }
   color: var(--abc-ink);
   white-space: nowrap;
 }
-.header__nav a:hover { color: var(--abc-teal-dark); }
+.header__nav a:hover { color: var(--abc-terracotta); }
 .header__cta { margin-left: auto; flex-shrink: 0; }
 .header__cta .btn { padding: 0.75em 1.3em; white-space: nowrap; }
 
@@ -238,8 +241,8 @@ h3 { font-size: var(--fs-h3); }
 .nav-toggle {
   display: inline-flex; align-items: center; justify-content: center;
   width: 46px; height: 46px;
-  background: transparent; border: 2px solid var(--abc-ink);
-  border-radius: var(--radius); color: var(--abc-ink);
+  background: transparent; border: 2px solid var(--abc-wine);
+  border-radius: var(--radius); color: var(--abc-wine);
 }
 .nav-toggle span { display: block; width: 20px; height: 2px; background: currentColor; position: relative; }
 .nav-toggle span::before, .nav-toggle span::after {
@@ -263,7 +266,7 @@ h3 { font-size: var(--fs-h3); }
   display: block; padding: 0.7rem 0;
   font-family: var(--font-display); font-size: 1.5rem;
   letter-spacing: 0.03em; text-transform: uppercase;
-  text-decoration: none; color: var(--abc-ink);
+  text-decoration: none; color: var(--abc-wine);
   border-bottom: 1px solid var(--rule);
 }
 
@@ -279,63 +282,63 @@ h3 { font-size: var(--fs-h3); }
   display: grid;
   align-items: end;
   isolation: isolate;
-  color: var(--abc-cream);
+  color: var(--text);
   overflow: hidden;
 }
 .hero__media { position: absolute; inset: 0; z-index: -2; }
 .hero__media img { width: 100%; height: 100%; object-fit: cover; object-position: center 20%; }
 .hero::after {
   content: ""; position: absolute; inset: 0; z-index: -1;
-  background: linear-gradient(
-    to top,
-    rgba(6, 60, 70, 0.90) 0%,
-    rgba(6, 60, 70, 0.82) 38%,
-    rgba(6, 60, 70, 0.60) 62%,
-    rgba(8, 74, 88, 0.26) 84%,
-    rgba(8, 74, 88, 0.14) 100%
-  );
-}
-/* On phones the hero copy is tall and rides up over the bright awning, where
-   yellow-on-yellow becomes unreadable. The stack is taller relative to the
-   image, so the scrim has to reach much further up than it does on desktop. */
-@media (max-width: 899px) {
-  .hero::after {
-    background: linear-gradient(
-      to top,
-      rgba(6, 60, 70, 0.94) 0%,
-      rgba(6, 60, 70, 0.88) 46%,
-      rgba(6, 60, 70, 0.74) 70%,
-      rgba(8, 74, 88, 0.44) 90%,
-      rgba(8, 74, 88, 0.30) 100%
-    );
-  }
+  /* Barely there. The photo is the point: sunshine, yellow awning, parasols.
+     A dark wash was making it read as mauve, so instead of dimming the picture
+     the copy sits on its own light panel and keeps its contrast there. */
+  background:
+    linear-gradient(to top,
+      rgba(110, 43, 54, 0.22) 0%,
+      rgba(110, 43, 54, 0.08) 30%,
+      rgba(255, 219, 77, 0.06) 70%,
+      rgba(255, 219, 77, 0.10) 100%);
 }
 
-.hero__inner { padding-block: clamp(2.5rem, 7vw, 5rem); }
+.hero__inner { padding-block: clamp(2rem, 5vw, 4rem); }
+
+/* The hero copy lives on a cream panel rather than directly on the photo.
+   That is what lets the photograph stay bright and untinted while the text
+   still clears AA comfortably: wine on cream is 9.65:1, ink on cream 15.79:1,
+   and neither depends on what is behind it. */
+.hero__panel {
+  background: rgba(255, 248, 236, 0.96);
+  backdrop-filter: blur(6px);
+  border-radius: var(--radius-lg);
+  padding: clamp(1.5rem, 3.5vw, 2.75rem);
+  max-width: min(100%, 44rem);
+  box-shadow: var(--shadow-lg);
+  /* A stripe of awning yellow along the top edge, echoing the frame. */
+  border-top: 6px solid var(--abc-yellow);
+}
 .hero__title {
   font-size: var(--fs-hero);
   /* Cool blue-white rather than the warm cream used elsewhere: it reads as sea
      light against the ocean scrim. 10.71:1 on #063C46. */
-  color: #E6F4F8;
-  margin-bottom: 0.1em;
-  text-shadow: 0 2px 26px rgba(3, 34, 40, 0.55);
+  color: var(--abc-cream);
+  margin-bottom: 0.08em;
+  text-shadow: 0 2px 26px rgba(50, 16, 22, 0.6);
 }
 .hero__script {
   font-family: var(--font-script);
   font-size: clamp(1.6rem, 4.6vw, 3.4rem);
-  color: var(--abc-yellow);
+  color: var(--abc-terracotta);
   text-transform: none;
   letter-spacing: 0;
   line-height: 1.2;
   margin-bottom: var(--sp-3);
-  text-shadow: 0 2px 18px rgba(3, 34, 40, 0.5);
 }
 .hero__tagline {
   font-family: var(--font-display);
   font-size: clamp(1.05rem, 2.3vw, 1.6rem);
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: #E6F4F8;
+  color: var(--abc-ink);
   margin-bottom: var(--sp-4);
   /* "DAY DRINKING. GOOD TIMES." is 25 characters — 24ch orphaned "TIMES."
      onto its own line. 32ch clears the longest line with room to spare. */
@@ -345,7 +348,7 @@ h3 { font-size: var(--fs-h3); }
   display: flex; flex-wrap: wrap; gap: var(--sp-1) var(--sp-3);
   margin-top: var(--sp-4);
   font-size: var(--fs-small);
-  color: rgba(255, 247, 230, 0.9);
+  color: var(--text-muted);
 }
 .hero__meta span { display: inline-flex; align-items: center; gap: 0.4em; }
 
@@ -353,7 +356,7 @@ h3 { font-size: var(--fs-h3); }
    land on top of the headline. */
 .hero__badge {
   display: inline-block;
-  background: var(--abc-coral);
+  background: var(--abc-salmon);
   color: var(--abc-ink);
   font-family: var(--font-display);
   font-size: clamp(0.95rem, 2vw, 1.25rem);
@@ -377,12 +380,12 @@ h3 { font-size: var(--fs-h3); }
 
 /* --- Marquee -------------------------------------------------------------- */
 .marquee {
-  background: var(--abc-ocean);
+  background: var(--abc-wine);
   color: var(--abc-yellow);
   padding-block: 0.85rem;
   overflow: hidden;
   white-space: nowrap;
-  border-block: 3px solid var(--abc-coral);
+  border-block: 3px solid var(--abc-salmon);
 }
 .marquee__track {
   display: inline-flex;
@@ -426,7 +429,7 @@ h3 { font-size: var(--fs-h3); }
 }
 .stat {
   background: var(--abc-cream);
-  border: 2px solid var(--rule);
+  border: 2px solid var(--abc-rose);
   border-radius: var(--radius);
   padding: var(--sp-3) var(--sp-2);
   text-align: center;
@@ -438,7 +441,7 @@ h3 { font-size: var(--fs-h3); }
   font-family: var(--font-display);
   font-size: clamp(2rem, 4vw, 2.9rem);
   line-height: 1;
-  color: var(--abc-teal-dark);
+  color: var(--abc-wine);
 }
 .stat__label {
   display: block;
@@ -526,7 +529,7 @@ h3 { font-size: var(--fs-h3); }
 }
 .action {
   background: var(--abc-cream);
-  border: 2px solid var(--rule);
+  border: 2px solid var(--abc-rose);
   border-radius: var(--radius-lg);
   padding: var(--sp-4) var(--sp-3);
   display: flex;
@@ -567,20 +570,20 @@ h3 { font-size: var(--fs-h3); }
 
 /* --- Rosé ----------------------------------------------------------------- */
 .rose {
-  background: linear-gradient(160deg, var(--abc-coral-soft) 0%, var(--abc-cream) 65%);
+  background: linear-gradient(160deg, var(--abc-rose) 0%, var(--abc-blush) 45%, var(--abc-cream) 100%);
 }
 .rose-grid { display: grid; gap: var(--sp-5); align-items: center; }
 @media (min-width: 880px) { .rose-grid { grid-template-columns: 0.85fr 1.15fr; gap: var(--sp-6); } }
 .rose-grid img { border-radius: var(--radius-lg); box-shadow: var(--shadow-lg); }
 
 .price-board {
-  background: var(--abc-ocean);
+  background: var(--abc-wine);
   color: var(--abc-cream);
   border-radius: var(--radius-lg);
   padding: var(--sp-4) var(--sp-3);
   margin-top: var(--sp-4);
 }
-.price-board h3 { color: var(--abc-yellow); margin-bottom: var(--sp-2); }
+.price-board h3 { color: var(--abc-rose); margin-bottom: var(--sp-2); }
 /* Two fixed tracks, not space-between: the dotted leader fills the gap so a
    short name and a long name align identically. */
 .price-board ul { display: grid; gap: 0.1rem; }
@@ -642,7 +645,7 @@ h3 { font-size: var(--fs-h3); }
 
 /* --- Event feature -------------------------------------------------------- */
 .event {
-  background: var(--abc-ocean);
+  background: var(--abc-wine);
   color: var(--abc-cream);
   border-radius: var(--radius-lg);
   overflow: hidden;
@@ -652,10 +655,10 @@ h3 { font-size: var(--fs-h3); }
 .event__media { min-height: 260px; }
 .event__media img { width: 100%; height: 100%; object-fit: cover; }
 .event__body { padding: clamp(1.75rem, 4vw, 3.25rem); align-self: center; }
-.event__body h2 { color: var(--abc-yellow); margin-bottom: var(--sp-2); }
+.event__body h2 { color: var(--abc-rose); margin-bottom: var(--sp-2); }
 .event__date {
   display: inline-block;
-  background: var(--abc-coral);
+  background: var(--abc-salmon);
   color: var(--abc-ink);
   font-family: var(--font-display);
   font-size: 1.15rem;
@@ -684,12 +687,12 @@ h3 { font-size: var(--fs-h3); }
   font-family: var(--font-display);
   font-size: 1.2rem;
   letter-spacing: 0.05em;
-  color: var(--abc-ink);
+  color: var(--abc-wine);
 }
 .hours__time { font-variant-numeric: tabular-nums; color: var(--text-muted); }
-.hours__row.is-today { background: var(--abc-coral-soft); border-radius: var(--radius); padding-inline: 0.75rem; }
+.hours__row.is-today { background: var(--abc-rose); border-radius: var(--radius); padding-inline: 0.75rem; }
 .hours__row.is-today .hours__time { color: var(--abc-ink); font-weight: 700; }
-.hours__row.is-closed .hours__time { color: var(--abc-coral-dark); font-weight: 600; }
+.hours__row.is-closed .hours__time { color: var(--abc-terracotta); font-weight: 600; }
 
 .notice {
   display: flex;
@@ -717,26 +720,26 @@ h3 { font-size: var(--fs-h3); }
 .info-list li span:first-child { text-align: center; }
 
 .address { font-style: normal; font-size: var(--fs-lead); line-height: 1.5; }
-.address strong { display: block; font-family: var(--font-display); font-size: 1.6rem; letter-spacing: 0.03em; }
+.address strong { display: block; font-family: var(--font-display); font-size: 1.6rem; letter-spacing: 0.03em; color: var(--abc-wine); }
 
 /* --- Footer ---------------------------------------------------------------
    Coral ground, ink text. Coral fails against cream (2.37:1), so nothing here
    may be light: headings, body and links are all ink. See tokens.css for the
    vetted alternatives. */
 .footer {
-  background: var(--footer-bg);
+  background: var(--footer-grad);
   color: var(--footer-text);
   padding-block: var(--sp-6) var(--sp-4);
 }
-.footer a { color: var(--footer-text); text-decoration: underline; text-underline-offset: 3px; }
-.footer a:hover { color: var(--footer-text); text-decoration-thickness: 3px; }
+.footer a { color: var(--abc-wine); text-decoration: underline; text-underline-offset: 3px; }
+.footer a:hover { color: var(--abc-wine); text-decoration-thickness: 3px; }
 .footer__grid {
   display: grid;
   gap: var(--sp-4);
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 210px), 1fr));
 }
 .footer h3 {
-  color: var(--footer-text);
+  color: var(--abc-wine);
   font-size: 1.25rem;
   margin-bottom: var(--sp-2);
 }
@@ -756,18 +759,18 @@ h3 { font-size: var(--fs-h3); }
 .footer__tagline {
   font-family: var(--font-script);
   font-size: 1.5rem;
-  color: var(--abc-teal-dark);   /* the logo's own teal, on coral, at display size */
+  color: var(--abc-wine);
 }
 .footer__bottom {
   margin-top: var(--sp-5);
   padding-top: var(--sp-3);
-  border-top: 1px solid rgba(26, 26, 26, 0.22);
+  border-top: 1px solid rgba(110, 43, 54, 0.28);
   display: flex;
   flex-wrap: wrap;
   gap: var(--sp-2);
   align-items: center;
   font-size: var(--fs-micro);
-  color: rgba(26, 26, 26, 0.78);
+  color: rgba(42, 26, 24, 0.82);
 }
 .footer__bottom p:last-child { margin-left: auto; }
 @media (max-width: 640px) { .footer__bottom p:last-child { margin-left: 0; } }

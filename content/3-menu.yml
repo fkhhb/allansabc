@@ -19,7 +19,7 @@ heading: The food
 # AUTO means "work it out from 2-opening-hours.yml and never let it go stale".
 # Replace AUTO with your own words any time you want to say something else.
 kicker: AUTO
-intro: The eggs Benny is mentioned in a hundred separate Google reviews. We're not going to pretend that's an accident.
+intro: Aussie brunch, cooked by a Frenchman. The eggs Benny turns up in a hundred separate Google reviews and we are not going to pretend that is an accident.
 
 
 # --- The food carousel -------------------------------------------------------
@@ -56,12 +56,12 @@ menus:
     file: assets/menus/allans-abc-drinks-menu.pdf
 
 # The small print under the menu buttons.
-menu_note: Sourdough comes from le Brot Bäckerei. Gluten-free bread from AERA in Mitte, plus €1.50. Full allergen list is on the menu. Cash only, and we don't split bills.
+menu_note: Sourdough comes from le Brot Bäckerei. Gluten-free bread from Jute Bäckerei in Mitte, plus €1.50. Full allergen list is on the menu. Cash only, and we don't split bills.
 
 
 # --- The drinks panel --------------------------------------------------------
 
 drinks_panel:
   heading: Coffee, tea & the good stuff
-  intro: Coffee roasted in Berlin. Bulletproof, dirty chai, espresso tonic, and a hot chocolate you can have with dark rum. Cocktails from the board.
+  intro: Coffee roasted in Berlin, and everything that comes after it. Spritzes from ten, Bloody Marys for the brave, frosé when the terrace gets going.
   note: "Margaritas: cheaper than therapy. All prices in €, cash only, and we don't split bills."

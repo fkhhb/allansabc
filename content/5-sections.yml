@@ -14,20 +14,21 @@
 
 rose:
   show: yes
-  kicker: Our own label
+  kicker: Mostly Provence, always cold
   heading: |
     Rosé all day,
     everyday
   paragraphs:
-    - There is a neon sign behind the bar that says exactly this, so we're committed now. New vintage lands every year and it does not hang around.
-    - Beyond the ABC rosé there's a proper wine list, a frosé when it's hot, and a Bloody Mary that has rescued a number of Sundays.
+    - There is a neon sign behind the bar that says exactly this, so we are committed now. The list leans hard into Provence, because that is where the pale, dry, drink-it-at-noon stuff comes from, and it is what we would be drinking anyway.
+    - Then there is ABC Rosé, our own label. A new vintage lands every year and it does not hang around. Beyond that, a frosé when it is hot, a Bloody Mary that has rescued a number of Sundays, and a spritz list that starts at ten in the morning.
+    - Nobody here will look at you strangely for ordering pink before lunch. That is rather the whole idea.
 
 
 # --- The gallery -------------------------------------------------------------
 
 gallery:
   show: yes
-  kicker: The room, the street, the plates
+  kicker: Sun, terrace, glassware
   heading: Have a look
 
 
@@ -38,7 +39,7 @@ event:
   show: yes
   date_line: Saturday 5 September · 11:00–20:00
   heading: Ten years of Allan's
-  text: A decade on Rykestraße. We're opening the doors at eleven and keeping them open till eight. Food, rosé, records, and everyone who's kept the place going since 2015.
+  text: A decade on Rykestraße. Doors at eleven, open till eight. Food, a great deal of rosé, records, and everyone who has kept the place going since 2015.
   handwritten_line: Book your spot or just drop by.
   button_label: Save your spot
   button_link: https://www.instagram.com/allans_abc/
@@ -50,7 +51,7 @@ book:
   show: yes
   kicker: Tables, takeaway, takeovers
   heading: Get in touch
-  intro: We don't do online booking forms. A message reaches an actual person, which is how we like it.
+  intro: No online booking forms. A message reaches an actual person, which is how we like it.
 
   boxes:
     - icon: 📸
@@ -97,7 +98,7 @@ visit:
 
   # The list of practical facts. Add or remove lines freely.
   facts:
-    - icon: 🪑
+    - icon: ☀️
       text: Terrace open whenever the sun is
     - icon: 🐕
       text: Dogs welcome, inside and out
@@ -115,5 +116,5 @@ visit:
 
 footer:
   handwritten_line: Brunch & Aperitivo
-  sign_off: Rosé all day, everyday.
+  sign_off: Drink Provence water.
   legal_name: ABC - Allan's Breakfast Club & Wine Bar

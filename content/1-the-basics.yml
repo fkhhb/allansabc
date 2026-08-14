@@ -21,13 +21,18 @@
 name: Allan's ABC
 
 # The handwritten line under the big title on the homepage.
-script_line: Brunch & Aperitivo
+script_line: Welcome to the beach house
+
+# The short descriptor used in the browser tab and in link previews when the
+# page is shared. Kept separate from script_line, which is playful: this one
+# has to tell a stranger what the place actually is.
+seo_line: Brunch & Aperitivo
 
 # The short punchy line under that. Use a single | and then indent the lines
 # below it. Each new line here becomes a new line on the website.
 tagline: |
-  Day drinking. Good times.
-  Always.
+  Day drinking. Provence rosé.
+  Good times, always.
 
 
 # --- Where we are ------------------------------------------------------------
@@ -75,21 +80,23 @@ stats:
 # Add or remove lines freely. Each "- " is one saying.
 
 scrolling_words:
-  - Ten years on Rykestraße
   - Rosé all day, everyday
+  - Drink Provence water
+  - The one and only rosé café in Berlin
   - You look thirsty (we can help)
-  - Good food, good company
+  - Day drinking since 2015
 
 
 # --- The "about us" paragraphs ----------------------------------------------
 
 about:
   heading: |
-    Ten years of
-    getting it right
+    The one and only
+    rosé café in Berlin
 
-  intro: Aussie brunch culture, run by a Frenchman, on a Berlin side street. Café by day. Terrace all summer. Rosé whenever.
+  intro: A Frenchman, an Australian breakfast, and a fridge full of Provence rosé. On a Prenzlauer Berg side street, with the sun on the terrace and nowhere else to be.
 
   paragraphs:
-    - "Allan came to Berlin by way of Australia and brought the good bits with him: the coffee, the eggs, the not-taking-it-too-seriously. Then he added the French half: rosé at lunchtime, sometimes oysters at six (when we feel like it), a bar that stays open because the sun is still out."
-    - "It's been that way on Rykestraße for a decade. Some things haven't changed: the eggs Benny, the yellow awning, the fact that we still only take cash."
+    - "Allan came to Berlin the long way round, by way of Australia, and brought the good bits with him: the coffee, the eggs, the refusal to take a Tuesday too seriously. Then he added the French half. Rosé at lunchtime. Sometimes oysters at six, when we feel like it. A bar that stays open because the sun is still out."
+    - The rosé is the point. Mostly Provence, always cold, poured from eleven in the morning without anyone raising an eyebrow. Pink in the glass, yellow over your head, and a whole afternoon in front of you.
+    - "Ten years on Rykestraße and some things have not moved: the eggs Benny, the striped awning, the fact that we still only take cash."
