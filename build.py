@@ -1,0 +1,312 @@
+#!/usr/bin/env python3
+"""Build the Allan's ABC website from the files in content/.
+
+    python3 build.py
+
+Reads every .yml file in content/, renders templates/index.html.j2, and writes
+site/index.html. Nobody editing the website should ever need to run this by
+hand: GitHub runs it automatically whenever a content file changes.
+
+The job of this script is to fail LOUDLY and CLEARLY when someone makes a typo,
+because the person editing the content is not a developer. Every error message
+should name the file, and say what to do about it.
+"""
+from __future__ import annotations
+
+import re
+import sys
+from pathlib import Path
+
+try:
+    import yaml
+    from jinja2 import Environment, FileSystemLoader, StrictUndefined
+except ImportError:
+    sys.exit("Missing build tools. Run:  python3 -m pip install pyyaml jinja2")
+
+ROOT = Path(__file__).parent
+CONTENT = ROOT / "content"
+TEMPLATES = ROOT / "templates"
+SITE = ROOT / "site"
+OUTPUT = SITE / "index.html"
+
+problems: list[str] = []
+
+
+def fail(message: str) -> None:
+    problems.append(message)
+
+
+def load_content() -> dict:
+    """Load every content/*.yml into one dictionary keyed by short name.
+
+    content/1-the-basics.yml  ->  data["the_basics"]
+    """
+    data = {}
+    files = sorted(CONTENT.glob("*.yml"))
+    if not files:
+        sys.exit(f"No .yml files found in {CONTENT}")
+
+    for path in files:
+        # "1-the-basics.yml" -> "the_basics"
+        key = re.sub(r"^\d+-", "", path.stem).replace("-", "_")
+        try:
+            loaded = yaml.safe_load(path.read_text(encoding="utf-8"))
+        except yaml.YAMLError as exc:
+            mark = getattr(exc, "problem_mark", None)
+            where = f" near line {mark.line + 1}" if mark else ""
+            fail(
+                f"{path.name} is not valid YAML{where}.\n"
+                f"      This is almost always a spacing problem, a missing colon,\n"
+                f"      or a line that needs \"quotes\" around it.\n"
+                f"      Details: {getattr(exc, 'problem', exc)}"
+            )
+            continue
+        if loaded is None:
+            fail(f"{path.name} is empty.")
+            continue
+        data[key] = loaded
+    return data
+
+
+def check_required(data: dict) -> None:
+    """Catch the mistakes that would produce a broken-looking page."""
+    required = {
+        "the_basics": ["name", "address", "links"],
+        "opening_hours": ["days"],
+        "menu": ["dishes", "menus"],
+        "photos": ["hero", "dishes", "gallery"],
+        "sections": ["visit", "footer"],
+    }
+    for file_key, keys in required.items():
+        if file_key not in data:
+            fail(f"Missing content file for '{file_key}'.")
+            continue
+        for key in keys:
+            if key not in data[file_key]:
+                fail(f"'{key}' is missing from {file_key.replace('_', '-')}.yml")
+
+    if problems:
+        return
+
+    # Every dish must point at a photo that actually exists in 4-photos.yml.
+    photos = data["photos"].get("dishes", {}) or {}
+    for dish in data["menu"].get("dishes", []) or []:
+        name = dish.get("name", "(unnamed dish)")
+        if not dish.get("description"):
+            fail(f"The dish '{name}' in 3-menu.yml has no description.")
+        ref = dish.get("photo")
+        if ref and ref not in photos:
+            options = ", ".join(sorted(photos)) or "none defined"
+            fail(
+                f"The dish '{name}' in 3-menu.yml uses photo '{ref}',\n"
+                f"      but there is no '{ref}' in the dishes list in 4-photos.yml.\n"
+                f"      Available names: {options}"
+            )
+
+    # Opening hours must be one or the other, never neither.
+    for day in data["opening_hours"].get("days", []) or []:
+        label = day.get("day", "(unnamed day)")
+        if day.get("closed"):
+            continue
+        if not (day.get("open") and day.get("close")):
+            fail(
+                f"{label} in 2-opening-hours.yml needs both an 'open:' and a\n"
+                f"      'close:' time, or 'closed: yes' if we aren't open that day."
+            )
+
+
+def check_files_exist(data: dict) -> None:
+    """Warn about photos and menus pointing at files that aren't in the repo."""
+    referenced: list[tuple[str, str]] = []
+
+    photos = data.get("photos", {})
+    for key in ("hero", "about", "rose", "event", "visit"):
+        if isinstance(photos.get(key), dict) and photos[key].get("file"):
+            referenced.append((f"4-photos.yml ({key})", photos[key]["file"]))
+    for name, entry in (photos.get("dishes") or {}).items():
+        if entry.get("file"):
+            referenced.append((f"4-photos.yml ({name})", entry["file"]))
+    for i, entry in enumerate(photos.get("gallery") or [], 1):
+        if entry.get("file"):
+            referenced.append((f"4-photos.yml (gallery #{i})", entry["file"]))
+    for which, entry in (data.get("menu", {}).get("menus") or {}).items():
+        if entry.get("file"):
+            referenced.append((f"3-menu.yml ({which} menu)", entry["file"]))
+
+    for where, target in referenced:
+        if target.startswith(("http://", "https://")):
+            continue  # hosted elsewhere, nothing for us to check
+        if not (SITE / target).exists():
+            fail(
+                f"{where} points at '{target}',\n"
+                f"      but there is no such file in site/{target.rsplit('/', 1)[0]}/.\n"
+                f"      Upload it, or correct the file name."
+            )
+
+
+def apply_defaults(data: dict) -> None:
+    """Fill in every optional setting.
+
+    Someone editing content should be able to delete a line they don't need
+    without the build falling over, so anything optional gets a sensible value
+    here rather than being demanded by the template.
+    """
+    basics = data["the_basics"]
+    sections = data["sections"]
+
+    basics.setdefault("badge", {}).setdefault("show", False)
+    basics["badge"].setdefault("text", "")
+    basics.setdefault("stats", [])
+    basics.setdefault("scrolling_words", [])
+    basics.setdefault("about", {}).setdefault("paragraphs", [])
+    basics["about"].setdefault("intro", "")
+    basics["about"].setdefault("heading", basics.get("name", ""))
+
+    # Sections default to visible: forgetting "show" should not hide the page.
+    for name in ("rose", "gallery", "event", "book"):
+        sections.setdefault(name, {}).setdefault("show", True)
+    sections["rose"].setdefault("paragraphs", [])
+    sections["rose"].setdefault("heading", "")
+    sections["rose"].setdefault("kicker", "")
+    sections["book"].setdefault("boxes", [])
+    sections["visit"].setdefault("facts", [])
+    sections["visit"].setdefault("notice", {}).setdefault("show", False)
+
+    for box in sections["book"]["boxes"]:
+        box.setdefault("icon", "")
+        box.setdefault("show_email_underneath", False)
+        for button in box.setdefault("buttons", []):
+            button.setdefault("style", "primary")
+
+    for dish in data["menu"]["dishes"]:
+        dish.setdefault("tag", "")
+        # YAML reads 14.50 as the number 14.5, which would print as "€14.5".
+        # Build the display string here so whole euros stay clean ("€14") and
+        # anything with cents always shows two digits ("€14.50").
+        price = dish.get("price")
+        if price is None or price == "":
+            dish["price_display"] = ""
+        elif isinstance(price, (int, float)):
+            dish["price_display"] = (
+                f"{price:.0f}" if float(price) == int(price) else f"{price:.2f}"
+            )
+        else:
+            dish["price_display"] = str(price).lstrip("€").strip()
+
+    for day in data["opening_hours"]["days"]:
+        day.setdefault("closed", False)
+
+    data["opening_hours"].setdefault("note", "")
+    data["opening_hours"].setdefault("footer_summary", [])
+    data["menu"].setdefault("menu_note", "")
+
+    # A photo entry that exists but has no description still needs the key.
+    photos = data["photos"]
+    for key in ("hero", "about", "rose", "event", "visit"):
+        photos.setdefault(key, {}).setdefault("description", "")
+        photos[key].setdefault("file", "")
+    for entry in list((photos.get("dishes") or {}).values()) + list(photos.get("gallery") or []):
+        entry.setdefault("description", "")
+
+
+def add_derived(data: dict) -> None:
+    """Work out the values the template needs but nobody should have to type."""
+    basics = data["the_basics"]
+
+    addr = basics["address"]
+    basics["address_one_line"] = (
+        f"{addr['street']}, {addr['postcode']} {addr['city']}"
+    )
+
+    # Multi-line fields: split so the template can insert real line breaks.
+    for holder, field in (
+        (basics, "tagline"),
+        (basics.get("about", {}), "heading"),
+        (data["sections"].get("rose", {}), "heading"),
+    ):
+        if holder and isinstance(holder.get(field), str):
+            holder[f"{field}_lines"] = [
+                line.strip() for line in holder[field].strip().splitlines() if line.strip()
+            ]
+
+    # Hours: a display string per day, plus the weekday number the JavaScript
+    # uses to highlight today. Sunday is 0 to match the browser's getDay().
+    weekday_number = {
+        "sunday": 0, "monday": 1, "tuesday": 2, "wednesday": 3,
+        "thursday": 4, "friday": 5, "saturday": 6,
+    }
+    for day in data["opening_hours"]["days"]:
+        day["index"] = weekday_number.get(str(day["day"]).strip().lower(), -1)
+        day["display"] = (
+            "Closed" if day.get("closed") else f"{day['open']} – {day['close']}"
+        )
+
+    # Attach the resolved photo to each dish so the template stays simple.
+    photos = data["photos"]["dishes"]
+    for dish in data["menu"]["dishes"]:
+        dish["image"] = photos.get(dish.get("photo"), {})
+
+    # "EMAIL" in a button link is shorthand for the events mailto.
+    email = basics["links"].get("events_email", "")
+    subject = "Event%20enquiry%20at%20Allan%27s%20ABC"
+    body = ("Hi%20Allan%2C%0A%0AI%27d%20like%20to%20ask%20about%20an%20event%20"
+            "at%20Allan%27s%20ABC.%0A%0ADate%3A%0ANumber%20of%20guests%3A%0A"
+            "What%20we%27re%20celebrating%3A%0A%0AThanks%21%0A")
+    basics["links"]["events_mailto"] = f"mailto:{email}?subject={subject}&body={body}"
+
+    for box in data["sections"].get("book", {}).get("boxes", []) or []:
+        for button in box.get("buttons", []) or []:
+            if button.get("link") == "EMAIL":
+                button["link"] = basics["links"]["events_mailto"]
+
+    # The scrolling strip is duplicated so the loop can run seamlessly.
+    words = basics.get("scrolling_words") or []
+    basics["scrolling_words_doubled"] = list(words) + list(words)
+
+
+def main() -> int:
+    data = load_content()
+    if problems:
+        report()
+        return 1
+
+    check_required(data)
+    check_files_exist(data)
+    if problems:
+        report()
+        return 1
+
+    apply_defaults(data)
+    add_derived(data)
+
+    env = Environment(
+        loader=FileSystemLoader(TEMPLATES),
+        undefined=StrictUndefined,
+        trim_blocks=True,
+        lstrip_blocks=True,
+        autoescape=True,
+    )
+    template = env.get_template("index.html.j2")
+    OUTPUT.write_text(template.render(**data), encoding="utf-8")
+
+    dishes = len(data["menu"]["dishes"])
+    gallery = len(data["photos"]["gallery"])
+    open_days = sum(1 for d in data["opening_hours"]["days"] if not d.get("closed"))
+    print("Website rebuilt successfully.")
+    print(f"  {dishes} dishes, {gallery} gallery photos, open {open_days} days a week")
+    print(f"  Written to {OUTPUT.relative_to(ROOT)}")
+    return 0
+
+
+def report() -> None:
+    print("\n" + "=" * 70)
+    print(" The website could not be rebuilt. Nothing has changed on the live site.")
+    print("=" * 70 + "\n")
+    for problem in problems:
+        print(f"  •  {problem}\n")
+    print("Fix the above in the content/ folder and save again.")
+    print("If you're stuck, undo your last change and the site carries on as before.\n")
+
+
+if __name__ == "__main__":
+    sys.exit(main())

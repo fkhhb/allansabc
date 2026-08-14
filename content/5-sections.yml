@@ -1,0 +1,119 @@
+# =============================================================================
+#  5. THE REST OF THE PAGE
+#  Rosé section, events, booking boxes, and the practical info at the bottom.
+# =============================================================================
+#
+#  Anything with  show: yes  can be turned off by changing it to  show: no
+#  The section disappears from the website, and its link disappears from the
+#  menu at the top. Change it back to  yes  to bring it back.
+#
+# =============================================================================
+
+
+# --- The rosé section --------------------------------------------------------
+
+rose:
+  show: yes
+  kicker: Our own label
+  heading: |
+    Rosé all day,
+    everyday
+  paragraphs:
+    - There is a neon sign behind the bar that says exactly this, so we're committed now. New vintage lands every year and it does not hang around.
+    - Beyond the ABC rosé there's a proper wine list, a frosé when it's hot, and a Bloody Mary that has rescued a number of Sundays.
+
+
+# --- The gallery -------------------------------------------------------------
+
+gallery:
+  show: yes
+  kicker: The room, the street, the plates
+  heading: Have a look
+
+
+# --- The big event box -------------------------------------------------------
+#  Turn this off after the party with  show: no
+
+event:
+  show: yes
+  date_line: Sunday 6 September · 11:00–20:00
+  heading: Ten years of Allan's
+  text: A decade on Rykestraße. We're opening the doors at eleven and keeping them open till eight. Food, rosé, records, and everyone who's kept the place going since 2015.
+  handwritten_line: Book your spot or just drop by.
+  button_label: Save your spot
+  button_link: https://www.instagram.com/allans_abc/
+
+
+# --- The three booking boxes -------------------------------------------------
+
+book:
+  show: yes
+  kicker: Tables, takeaway, takeovers
+  heading: Get in touch
+  intro: We don't do online booking forms. A message reaches an actual person, which is how we like it.
+
+  boxes:
+    - icon: 📸
+      heading: Book a table
+      text: Send us a DM on Instagram or Facebook and we'll sort you out. Weekend brunch fills up, so give us a bit of notice.
+      buttons:
+        - label: Instagram DM
+          link: https://www.instagram.com/allans_abc/
+          style: primary
+        - label: Facebook
+          link: https://www.facebook.com/allansbreakfastclub/
+          style: ghost
+
+    - icon: 🥡
+      heading: Order online
+      text: Brunch at your desk, or at home in your dressing gown. Delivery and pick-up both run through Wolt.
+      buttons:
+        - label: Order on Wolt
+          link: https://wolt.com/en/deu/berlin/restaurant/abc-allans-breakfast-club-wine-bar
+          style: secondary
+
+    - icon: 🎉
+      heading: Events & big groups
+      text: Birthdays, weddings, work things, whole-venue takeovers. Email Allan directly and tell us what you're planning.
+      buttons:
+        - label: Email us
+          link: EMAIL          # the word EMAIL becomes the events email address
+          style: primary
+      show_email_underneath: yes
+
+
+# --- The "come over" section at the bottom -----------------------------------
+
+visit:
+  kicker: Find us
+  heading: Come over
+
+  # The yellow warning box. Set show to no to remove it.
+  notice:
+    show: yes
+    icon: 💶
+    heading: We only take cash
+    text: No cards, no phones, no exceptions. There's an ATM on Danziger Straße, two minutes away. Sorry, and thank you for not making it awkward.
+
+  # The list of practical facts. Add or remove lines freely.
+  facts:
+    - icon: 🪑
+      text: Terrace open whenever the sun is
+    - icon: 🐕
+      text: Dogs welcome, inside and out
+    - icon: ♿
+      text: Step-free entrance and accessible WC
+    - icon: 👶
+      text: Kids' menu, high chairs
+    - icon: 🥡
+      text: Takeaway and delivery via Wolt
+    - icon: 🚗
+      text: Paid street parking, genuinely difficult. Take the M2
+
+
+# --- The bottom of every page ------------------------------------------------
+
+footer:
+  handwritten_line: Brunch & Aperitivo
+  sign_off: Rosé all day, everyday.
+  legal_name: ABC - Allan's Breakfast Club & Wine Bar

@@ -1,0 +1,475 @@
+{#
+  Allan's ABC homepage template.
+
+  This file is the LAYOUT. The words and pictures come from the content/ folder.
+  If you want to change wording, a price, a photo or the hours, edit the files
+  in content/ instead of touching this one.
+
+  {{ ... }} pulls a value in from content/.  {% if %} / {% for %} decide what
+  gets shown and how many times.
+#}
+{% set b = the_basics %}
+{% set s = sections %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ b.name }} · {{ b.script_line }}, {{ b.address.area }} {{ b.address.city }}</title>
+<meta name="description" content="Aussie brunch, French apéro and rosé all day on {{ b.address.street }}, {{ b.address.area }}. Ten years in {{ b.address.city }}. Bookings via Instagram. Cash only.">
+<link rel="canonical" href="https://allansabc.com/">
+
+<meta property="og:type" content="restaurant">
+<meta property="og:site_name" content="{{ b.name }}">
+<meta property="og:title" content="{{ b.name }} · {{ b.script_line }}, {{ b.address.city }}">
+<meta property="og:description" content="{{ b.tagline_lines | join(' ') }} {{ b.address.street }}, {{ b.address.area }}.">
+<meta property="og:url" content="https://allansabc.com/">
+<meta property="og:image" content="https://allansabc.com/{{ photos.hero.file }}">
+<meta property="og:locale" content="en_GB">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#FF7B6B">
+
+<link rel="icon" href="assets/logo/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/logo/allans-heart-logo.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Kaushan+Script&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/patterns.css">
+<link rel="stylesheet" href="css/main.css">
+
+<!-- Must run before first paint: scroll-reveal styles are scoped to .js so the
+     page stays fully readable if JavaScript never arrives. -->
+<script>document.documentElement.classList.add('js');</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Restaurant",
+  "name": {{ b.name | tojson }},
+  "alternateName": {{ s.footer.legal_name | tojson }},
+  "description": "Aussie brunch culture crossed with French apéro. Café by day, wine bar by night, in {{ b.address.area }}.",
+  "url": "https://allansabc.com/",
+  "image": "https://allansabc.com/{{ photos.hero.file }}",
+  "servesCuisine": ["Brunch", "Australian", "French", "Mediterranean"],
+  "priceRange": "€€",
+  "paymentAccepted": "Cash",
+  "currenciesAccepted": "EUR",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": {{ b.address.street | tojson }},
+    "addressLocality": {{ b.address.city | tojson }},
+    "postalCode": {{ b.address.postcode | tojson }},
+    "addressRegion": {{ b.address.city | tojson }},
+    "addressCountry": "DE"
+  },
+  "geo": { "@type": "GeoCoordinates", "latitude": 52.5364792, "longitude": 13.4209021 },
+  "hasMap": {{ b.map_link | tojson }},
+  "email": {{ b.links.events_email | tojson }},
+  "acceptsReservations": {{ b.links.instagram | tojson }},
+  "hasMenu": "https://allansabc.com/{{ menu.menus.food.file }}",
+  "potentialAction": {
+    "@type": "OrderAction",
+    "target": {
+      "@type": "EntryPoint",
+      "urlTemplate": {{ b.links.order_online | tojson }},
+      "inLanguage": "en",
+      "actionPlatform": ["http://schema.org/DesktopWebPlatform", "http://schema.org/MobileWebPlatform"]
+    },
+    "deliveryMethod": ["http://purl.org/goodrelations/v1#DeliveryModeOwnFleet", "http://purl.org/goodrelations/v1#DeliveryModePickUp"]
+  },
+  "sameAs": [{{ b.links.instagram | tojson }}, {{ b.links.facebook | tojson }}],
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.4",
+    "reviewCount": "1550",
+    "bestRating": "5"
+  },
+  "openingHoursSpecification": [
+{% for day in opening_hours.days if not day.closed %}
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": {{ day.day | tojson }}, "opens": {{ day.open | tojson }}, "closes": {{ day.close | tojson }} }{{ "," if not loop.last }}
+{% endfor %}
+  ],
+  "amenityFeature": [
+    { "@type": "LocationFeatureSpecification", "name": "Outdoor seating", "value": true },
+    { "@type": "LocationFeatureSpecification", "name": "Wheelchair accessible", "value": true },
+    { "@type": "LocationFeatureSpecification", "name": "Dogs allowed", "value": true }
+  ]
+}
+</script>
+</head>
+
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+{# The navigation is built from whichever sections are switched on. #}
+{% set nav = [] %}
+{% set _ = nav.append({'id': 'brunch', 'label': 'Menu'}) %}
+{% if s.rose.show %}{% set _ = nav.append({'id': 'rose', 'label': 'Rosé'}) %}{% endif %}
+{% if s.gallery.show %}{% set _ = nav.append({'id': 'gallery', 'label': 'Gallery'}) %}{% endif %}
+{% if s.book.show %}{% set _ = nav.append({'id': 'book', 'label': 'Book'}) %}{% endif %}
+{% set _ = nav.append({'id': 'visit', 'label': 'Visit'}) %}
+
+<!-- ============================ HEADER ============================ -->
+<header class="header" id="site-header">
+  <div class="wrap header__inner">
+    <a class="header__logo" href="#top" aria-label="{{ b.name }}, home">
+      <img src="assets/logo/allans-heart-logo.png" alt="" width="46" height="41">
+      <span class="header__logo-text">{{ b.name }}</span>
+    </a>
+
+    <nav class="header__nav" aria-label="Main">
+      <ul>
+{% for item in nav %}
+        <li><a href="#{{ item.id }}">{{ item.label }}</a></li>
+{% endfor %}
+      </ul>
+    </nav>
+
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="mobile-nav">
+      <span></span>
+      <span class="visually-hidden">Menu</span>
+    </button>
+
+    <div class="header__cta">
+      <a class="btn btn--primary" href="{{ b.links.instagram }}" target="_blank" rel="noopener">
+        <span class="cta-long">Book a table</span><span class="cta-short" aria-hidden="true">Book</span>
+      </a>
+    </div>
+  </div>
+
+  <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile">
+    <div class="wrap">
+      <ul>
+{% for item in nav %}
+        <li><a href="#{{ item.id }}">{{ item.label }}</a></li>
+{% endfor %}
+      </ul>
+    </div>
+  </nav>
+</header>
+
+<main id="main">
+<span id="top"></span>
+
+<!-- ============================ HERO ============================ -->
+<section class="hero">
+  <div class="hero__media">
+    <img src="{{ photos.hero.file }}" alt="{{ photos.hero.description }}" fetchpriority="high">
+  </div>
+
+  <div class="wrap hero__inner">
+{% if b.badge.show %}
+    <p class="hero__badge">{{ b.badge.text }}</p>
+{% endif %}
+    <h1 class="hero__title">{{ b.name }}</h1>
+    <p class="hero__script">{{ b.script_line }}</p>
+    <p class="hero__tagline">{% for line in b.tagline_lines %}{{ line }}{{ "<br>" | safe if not loop.last }}{% endfor %}</p>
+
+    <div class="btn-row">
+      <a class="btn btn--primary" href="{{ b.links.instagram }}" target="_blank" rel="noopener">Book a table</a>
+      <a class="btn btn--ghost-light" href="{{ menu.menus.food.file }}" target="_blank" rel="noopener">See the food</a>
+    </div>
+
+    <p class="hero__meta">
+      <span>★ 4.4 · 1,550 Google reviews</span>
+      <span>{{ b.address.street }}, {{ b.address.area }}</span>
+      <span>Cash only</span>
+    </p>
+  </div>
+</section>
+
+<!-- ============================ MARQUEE ============================ -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee__track">
+{% for word in b.scrolling_words_doubled %}
+    <span>{{ word }}</span>
+    <span><em>✦</em></span>
+{% endfor %}
+  </div>
+</div>
+
+<!-- ============================ INTRO ============================ -->
+<section class="section" id="about">
+  <div class="wrap">
+    <div class="intro-grid">
+      <div class="intro__body reveal">
+        <p class="kicker">{{ b.address.street }} · {{ b.address.area }}</p>
+        <h2>{% for line in b.about.heading_lines %}{{ line }}{{ "<br>" | safe if not loop.last }}{% endfor %}</h2>
+        <p class="lead" style="margin-top:1rem">{{ b.about.intro }}</p>
+{% for para in b.about.paragraphs %}
+        <p style="margin-top:1.25rem">{{ para }}</p>
+{% endfor %}
+
+        <ul class="stats">
+{% for stat in b.stats %}
+          <li class="stat"><span class="stat__num">{{ stat.number }}</span><span class="stat__label">{{ stat.label }}</span></li>
+{% endfor %}
+        </ul>
+      </div>
+
+      <figure class="intro__figure reveal">
+        <img src="{{ photos.about.file }}" alt="{{ photos.about.description }}" loading="lazy">
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ MENU ============================ -->
+<section class="section section--soft" id="brunch">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="kicker">{{ menu.kicker }}</p>
+      <h2>{{ menu.heading }}</h2>
+      <p class="lead">{{ menu.intro }}</p>
+    </div>
+
+    <ul class="cards">
+{% for dish in menu.dishes %}
+      <li class="card reveal">
+        <div class="card__media">
+          <img src="{{ dish.image.file }}" alt="{{ dish.image.description }}" loading="lazy">
+        </div>
+        <div class="card__body">
+{% if dish.tag %}
+          <span class="card__tag">{{ dish.tag }}</span>
+{% endif %}
+          <h3>{{ dish.name }}</h3>
+{% if dish.price_display %}
+          <p class="card__price">€{{ dish.price_display }}</p>
+{% endif %}
+          <p>{{ dish.description }}</p>
+        </div>
+      </li>
+{% endfor %}
+    </ul>
+
+    <div class="menu-cta">
+      <a class="btn btn--primary" href="{{ menu.menus.food.file }}" target="_blank" rel="noopener">{{ menu.menus.food.label }}</a>
+      <a class="btn btn--secondary" href="{{ menu.menus.drinks.file }}" target="_blank" rel="noopener">{{ menu.menus.drinks.label }}</a>
+    </div>
+    <p class="menu-note">{{ menu.menu_note }}</p>
+  </div>
+</section>
+
+{% if s.rose.show %}
+<!-- ============================ ROSÉ ============================ -->
+<section class="section rose" id="rose">
+  <div class="wrap">
+    <div class="rose-grid">
+      <figure class="reveal">
+        <img src="{{ photos.rose.file }}" alt="{{ photos.rose.description }}" loading="lazy">
+      </figure>
+
+      <div class="reveal">
+        <p class="kicker">{{ s.rose.kicker }}</p>
+        <h2>{% for line in s.rose.heading_lines %}{{ line }}{{ "<br>" | safe if not loop.last }}{% endfor %}</h2>
+{% for para in s.rose.paragraphs %}
+        <p{% if loop.first %} class="lead" style="margin-top:1rem"{% else %} style="margin-top:1rem"{% endif %}>{{ para }}</p>
+{% endfor %}
+
+        <div class="price-board">
+          <h3>{{ menu.drinks_panel.heading }}</h3>
+          <p class="price-board__intro">{{ menu.drinks_panel.intro }}</p>
+          <div class="btn-row" style="margin-top:1.25rem">
+            <a class="btn btn--secondary" href="{{ menu.menus.drinks.file }}" target="_blank" rel="noopener">{{ menu.menus.drinks.label }}</a>
+          </div>
+          <p class="price-board__note">{{ menu.drinks_panel.note }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endif %}
+
+{% if s.gallery.show %}
+<!-- ============================ GALLERY ============================ -->
+<section class="section section--sand" id="gallery">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="kicker">{{ s.gallery.kicker }}</p>
+      <h2>{{ s.gallery.heading }}</h2>
+    </div>
+
+    <div class="gallery reveal">
+{% for photo in photos.gallery %}
+      <figure><img src="{{ photo.file }}" alt="{{ photo.description }}" loading="lazy"></figure>
+{% endfor %}
+    </div>
+
+    <p class="gallery-note" style="margin-top:1.5rem;font-size:0.8rem;color:var(--text-muted)">
+      More on <a href="{{ b.links.instagram }}" target="_blank" rel="noopener">Instagram</a>.
+    </p>
+  </div>
+</section>
+{% endif %}
+
+{% if s.event.show %}
+<!-- ============================ EVENT ============================ -->
+<section class="section" id="event">
+  <div class="wrap">
+    <article class="event reveal">
+      <div class="event__media">
+        <img src="{{ photos.event.file }}" alt="{{ photos.event.description }}" loading="lazy">
+      </div>
+      <div class="event__body">
+        <p class="event__date">{{ s.event.date_line }}</p>
+        <h2>{{ s.event.heading }}</h2>
+        <p>{{ s.event.text }}</p>
+        <p style="font-family:var(--font-script);font-size:1.5rem;color:var(--abc-coral)">{{ s.event.handwritten_line }}</p>
+        <div class="btn-row">
+          <a class="btn btn--secondary" href="{{ s.event.button_link }}" target="_blank" rel="noopener">{{ s.event.button_label }}</a>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+{% endif %}
+
+{% if s.book.show %}
+<!-- ============================ BOOK / ORDER / EVENTS ============================ -->
+<section class="section section--tight" id="book">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="kicker">{{ s.book.kicker }}</p>
+      <h2>{{ s.book.heading }}</h2>
+      <p class="lead">{{ s.book.intro }}</p>
+    </div>
+
+    <ul class="actions">
+{% for box in s.book.boxes %}
+      <li class="action reveal">
+        <span class="action__icon" aria-hidden="true">{{ box.icon }}</span>
+        <h3>{{ box.heading }}</h3>
+        <p>{{ box.text }}</p>
+        <div class="btn-row">
+{% for button in box.buttons %}
+          <a class="btn btn--{{ button.style }}" href="{{ button.link }}"{% if button.link.startswith('http') %} target="_blank" rel="noopener"{% endif %}>{{ button.label }}</a>
+{% endfor %}
+        </div>
+{% if box.show_email_underneath %}
+        <p class="action__note"><a href="mailto:{{ b.links.events_email }}">{{ b.links.events_email }}</a></p>
+{% endif %}
+      </li>
+{% endfor %}
+    </ul>
+  </div>
+</section>
+{% endif %}
+
+<!-- ============================ VISIT ============================ -->
+<section class="section section--soft" id="visit">
+  <div class="wrap">
+    <div class="visit-grid">
+      <div class="reveal">
+        <p class="kicker">{{ s.visit.kicker }}</p>
+        <h2>{{ s.visit.heading }}</h2>
+
+        <address class="address" style="margin-top:1.25rem">
+          <strong>{{ b.address.street }}</strong>
+          {{ b.address.postcode }} {{ b.address.city }} · {{ b.address.area }}
+        </address>
+
+        <div class="btn-row" style="margin-top:1.5rem">
+          <a class="btn btn--primary" href="{{ b.map_link }}" target="_blank" rel="noopener">Open in Maps</a>
+          <a class="btn btn--secondary" href="{{ b.links.order_online }}" target="_blank" rel="noopener">Order on Wolt</a>
+        </div>
+
+{% if s.visit.notice.show %}
+        <div class="notice">
+          <span class="notice__icon" aria-hidden="true">{{ s.visit.notice.icon }}</span>
+          <div>
+            <strong>{{ s.visit.notice.heading }}</strong>
+            <p>{{ s.visit.notice.text }}</p>
+          </div>
+        </div>
+{% endif %}
+
+        <ul class="info-list">
+{% for fact in s.visit.facts %}
+          <li><span aria-hidden="true">{{ fact.icon }}</span><span>{{ fact.text }}</span></li>
+{% endfor %}
+        </ul>
+      </div>
+
+      <div class="reveal">
+        <p class="kicker">Opening hours</p>
+        <h3 style="margin-bottom:.5rem">When we're on</h3>
+
+        <div class="hours" id="hours">
+{% for day in opening_hours.days %}
+          <div class="hours__row{{ ' is-closed' if day.closed }}" data-day="{{ day.index }}"><span class="hours__day">{{ day.day }}</span><span class="hours__time">{{ day.display }}</span></div>
+{% endfor %}
+        </div>
+
+        <p style="margin-top:1.25rem;font-size:0.875rem;color:var(--text-muted)">{{ opening_hours.note }}</p>
+
+        <figure style="margin-top:2rem;border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow)">
+          <img src="{{ photos.visit.file }}" alt="{{ photos.visit.description }}" loading="lazy">
+        </figure>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- ============================ FOOTER ============================ -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer__grid">
+      <div class="footer__logo">
+        <img src="assets/logo/allans-heart-logo.png" alt="{{ b.name }}" width="92" height="82" loading="lazy">
+        <p class="footer__tagline">{{ s.footer.handwritten_line }}</p>
+      </div>
+
+      <div>
+        <h3>Find us</h3>
+        <ul>
+          <li>{{ b.address.street }}</li>
+          <li>{{ b.address.postcode }} {{ b.address.city }}</li>
+          <li>{{ b.address.area }}</li>
+          <li style="margin-top:.5rem"><a href="{{ b.map_link }}" target="_blank" rel="noopener">Open in Maps →</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h3>Menus</h3>
+        <ul>
+          <li><a href="{{ menu.menus.food.file }}" target="_blank" rel="noopener">{{ menu.menus.food.label }} →</a></li>
+          <li><a href="{{ menu.menus.drinks.file }}" target="_blank" rel="noopener">{{ menu.menus.drinks.label }} →</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h3>Hours</h3>
+        <ul>
+{% for line in opening_hours.footer_summary %}
+          <li>{{ line }}</li>
+{% endfor %}
+          <li style="margin-top:.5rem"><strong>Cash only</strong></li>
+        </ul>
+      </div>
+
+      <div>
+        <h3>Follow &amp; order</h3>
+        <ul>
+          <li><a href="{{ b.links.instagram }}" target="_blank" rel="noopener">Instagram →</a></li>
+          <li><a href="{{ b.links.facebook }}" target="_blank" rel="noopener">Facebook →</a></li>
+          <li><a href="{{ b.links.order_online }}" target="_blank" rel="noopener">Order on Wolt →</a></li>
+          <li><a href="mailto:{{ b.links.events_email }}">Events: email us →</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer__bottom">
+      <p>© <span id="year">2026</span> {{ b.name }} · {{ s.footer.legal_name }}</p>
+      <p>{{ s.footer.sign_off }}</p>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js" defer></script>
+</body>
+</html>

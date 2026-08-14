@@ -1,0 +1,92 @@
+# =============================================================================
+#  3. THE MENU
+#  The dishes shown on the homepage, and the links to the full menu PDFs.
+# =============================================================================
+#
+#  HOW TO EDIT
+#  -----------
+#  Each dish is a block that starts with "- name:".
+#  Copy an existing block to add a new dish. Delete a block to remove one.
+#  Keep the indentation exactly as it is.
+#
+#  A dish looks like this:
+#
+#      - name: Eggs Benny
+#        tag: The famous one          <- small coloured label. Delete the line
+#                                        for no label.
+#        price: 14                    <- OPTIONAL. Delete the line to show no
+#                                        price. Just the number, no € sign.
+#        description: Two poached eggs, brioche, hollandaise.
+#        photo: dish-eggs-benny       <- must match a name in 5-photos.yml
+#
+#  Six dishes fit the layout neatly (three across, two rows). Nine also works.
+#  Any number is fine, it just may leave a short last row.
+#
+# =============================================================================
+
+heading: The brunch
+kicker: Every day we're open, from 9:30
+intro: The eggs Benny is mentioned in a hundred separate Google reviews. We're not going to pretend that's an accident.
+
+
+dishes:
+
+  - name: Eggs Benny
+    tag: The famous one
+    description: Two poached eggs, brioche, Allan's hollandaise. The single most-talked-about plate we do.
+    photo: dish-eggs-benny
+
+  - name: Benny + Allan's Lachs
+    tag: Add-on
+    description: The Benny, with cured salmon on top. Pulled pork and truffled spinach are the other two ways to go.
+    photo: dish-benny-salmon
+
+  - name: French toast
+    tag: Sweet
+    description: White chocolate, Greek yoghurt, oat streusel and thyme. There is an ABC Pavlova too.
+    photo: dish-french-toast
+
+  - name: Open Grilled Cheese
+    tag: Weekdays
+    description: Cheddar, Bergkäse, caramelised onions, sriracha mayo and chimichurri, open on sourdough.
+    photo: dish-waffles
+
+  - name: Croque Monsieur
+    tag: The French half
+    description: Ham, Gruyère, caramelised onions, mushroom béchamel, brioche, chips. Add two poached eggs to make it a Madame.
+    photo: dish-croque
+
+  - name: Frenchamisu
+    tag: Sweet
+    description: Brioche layered with banana and white chocolate mascarpone, finished with a shot of Baileys.
+    photo: dish-dessert
+
+
+# --- The full menu PDFs ------------------------------------------------------
+#
+#  TO UPDATE A MENU:
+#  Go to the folder  site/assets/menus/  in GitHub, click "Add file" ->
+#  "Upload files", and drop in the new PDF. Then change the file name below
+#  to match what you uploaded. Keep "assets/menus/" at the front.
+#
+#  Tip: if you upload the new PDF using the SAME file name as the old one,
+#  you don't have to change anything here at all.
+
+menus:
+  food:
+    label: Food menu (PDF)
+    file: assets/menus/allans-abc-food-menu.pdf
+  drinks:
+    label: Drinks menu (PDF)
+    file: assets/menus/allans-abc-drinks-menu.pdf
+
+# The small print under the menu buttons.
+menu_note: Sourdough comes from le Brot Bäckerei. Gluten-free bread from AERA in Mitte, plus €1.50. Full allergen list is on the menu. Cash only, and we don't split bills.
+
+
+# --- The drinks panel --------------------------------------------------------
+
+drinks_panel:
+  heading: Coffee, tea & the good stuff
+  intro: Coffee roasted in Berlin. Bulletproof, dirty chai, espresso tonic, and a hot chocolate you can have with dark rum. Cocktails from the board.
+  note: "Margaritas: cheaper than therapy. All prices in €, cash only, and we don't split bills."

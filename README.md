@@ -10,11 +10,33 @@ Rykestraße 13, 10405 Berlin.
 
 ---
 
+## For the restaurant: how to change the website
+
+Everything you'd want to edit lives in **`content/`**. Open that folder and read
+its `README.md`. Change a file, click *Commit changes*, and the live site updates
+itself in about a minute. If you make a mistake it refuses to publish and the
+current site stays up untouched.
+
+You never need to open any other folder.
+
+---
+
 ## What's in here
 
 ```
-site/                     The website. Static HTML/CSS/JS, no build step.
-  index.html
+content/                  ← EDIT HERE. Menu, hours, photos, text, links.
+  README.md               Plain-English guide for non-technical editors
+  1-the-basics.yml        Name, address, links, tagline, about text
+  2-opening-hours.yml     Hours (feeds the page, footer AND Google)
+  3-menu.yml              Dishes, prices, menu PDFs
+  4-photos.yml            Every image on the site
+  5-sections.yml          Events, booking boxes, on/off switches
+
+build.py                  Turns content/ into the website. GitHub runs it for you.
+templates/index.html.j2   The page layout. Rarely needs touching.
+
+site/                     The generated website. Do not hand-edit index.html:
+  index.html              it is rebuilt from content/ and your edits would be lost.
   css/                    tokens.css (brand vars) · patterns.css · main.css
   js/main.js
   assets/img/             21 curated, web-optimised photos
@@ -43,9 +65,9 @@ scripts/
 
 ## Running it locally
 
-No build, no dependencies. Serve the folder:
-
 ```bash
+python3 -m pip install pyyaml jinja2
+python3 build.py
 cd site && python3 -m http.server 8765
 ```
 
@@ -53,10 +75,15 @@ Then open http://localhost:8765
 
 ## Deploying
 
-`site/` is a static folder. It works on GitHub Pages, Netlify, Vercel or any host.
+Pushing to `main` triggers `.github/workflows/deploy.yml`, which rebuilds from
+`content/` and publishes to GitHub Pages. Nothing else to do.
 
-For **GitHub Pages**: Settings → Pages → deploy from branch `main`, folder `/site`.
-`CNAME` and `.nojekyll` are already in place for the `allansabc.com` domain.
+**One-time setup:** GitHub → Settings → Pages → Source: **GitHub Actions**.
+Then add `allansabc.com` as the custom domain. `CNAME` and `.nojekyll` are
+already committed.
+
+If the build fails, the deploy step never runs and the live site is untouched.
+Check the Actions tab for the reason.
 
 ---
 

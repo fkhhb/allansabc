@@ -1,0 +1,95 @@
+# =============================================================================
+#  1. THE BASICS
+#  Name, address, and the words that appear at the top of the website.
+# =============================================================================
+#
+#  HOW TO EDIT THIS FILE
+#  ---------------------
+#  Every line looks like:      thing_name: The value
+#  You only ever change the part AFTER the colon.
+#  Keep the quotes if they are already there. Keep the spacing at the start
+#  of the line exactly as it is.
+#
+#  When you save (GitHub calls it "Commit changes"), the website updates
+#  itself in about a minute.
+#
+# =============================================================================
+
+
+# --- What we're called -------------------------------------------------------
+
+name: Allan's ABC
+
+# The handwritten line under the big title on the homepage.
+script_line: Brunch & Aperitivo
+
+# The short punchy line under that. Use a single | and then indent the lines
+# below it. Each new line here becomes a new line on the website.
+tagline: |
+  Day drinking. Good times.
+  Always.
+
+
+# --- Where we are ------------------------------------------------------------
+
+address:
+  street: Rykestraße 13
+  postcode: "10405"
+  city: Berlin
+  area: Prenzlauer Berg
+
+# Link to the Google Maps pin.
+map_link: https://maps.app.goo.gl/R2DY5aFTYUW5iwvm7
+
+
+# --- How people reach us -----------------------------------------------------
+
+links:
+  instagram: https://www.instagram.com/allans_abc/
+  facebook: https://www.facebook.com/allansbreakfastclub/
+  order_online: https://wolt.com/en/deu/berlin/restaurant/abc-allans-breakfast-club-wine-bar
+  events_email: allanbourbon@live.com
+
+
+# --- The little badge in the top corner of the homepage ----------------------
+# Set show to  no  to hide it completely.
+
+badge:
+  show: yes
+  text: ★ 10 years · Sun 6 Sept
+
+
+# --- Numbers we show off -----------------------------------------------------
+# Update these when the review counts move.
+
+stats:
+  - number: "4.4"
+    label: Google · 1,550 reviews
+  - number: 92%
+    label: Recommend on Facebook
+  - number: "10"
+    label: Years on Rykestraße
+
+
+# --- The scrolling strip of sayings ------------------------------------------
+# Add or remove lines freely. Each "- " is one saying.
+
+scrolling_words:
+  - Ten years on Rykestraße
+  - Rosé all day, everyday
+  - You look thirsty (we can help)
+  - Good food, good company
+
+
+# --- The "about us" paragraphs ----------------------------------------------
+
+about:
+  heading: |
+    Ten years of
+    getting it right
+
+  intro: Aussie brunch culture, run by a Frenchman, on a Berlin side street. Café by day. Wine bar by night. Terrace all summer.
+
+  paragraphs:
+    - "Allan came to Berlin by way of Australia and brought the good bits with him: the coffee, the eggs, the not-taking-it-too-seriously. Then he added the French half: rosé at lunchtime, oysters at six, a bar that stays open because the sun is still out."
+    - "It's been that way on Rykestraße for a decade. Some things haven't changed: the eggs Benny, the yellow awning, the fact that we still only take cash."

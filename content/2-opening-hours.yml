@@ -1,0 +1,61 @@
+# =============================================================================
+#  2. OPENING HOURS
+#  Change a time here and it updates the hours list, the footer, and the
+#  information Google reads about us. All three stay in sync automatically.
+# =============================================================================
+#
+#  HOW TO EDIT
+#  -----------
+#  For a normal day:      open: "10:00"   close: "16:00"
+#  For a closed day:      closed: yes
+#
+#  Always keep the "quotes" around times, or 10:00 turns into a number
+#  and comes out looking wrong.
+#
+#  Use 24-hour times. 6pm is "18:00".
+#
+# =============================================================================
+
+days:
+  - day: Monday
+    open: "10:00"
+    close: "16:00"
+
+  - day: Tuesday
+    closed: yes
+
+  - day: Wednesday
+    closed: yes
+
+  - day: Thursday
+    open: "10:00"
+    close: "16:00"
+
+  - day: Friday
+    open: "10:00"
+    close: "16:00"
+
+  - day: Saturday
+    open: "09:30"
+    close: "18:00"
+
+  - day: Sunday
+    open: "09:30"
+    close: "18:00"
+
+
+# --- The note underneath the hours -------------------------------------------
+# Good place to explain late nights, events, or sunny-day exceptions.
+
+note: Party nights and events run later than this, and if the sun is out we have been known to just stay open. Instagram has the truth.
+
+
+# --- The short version shown in the footer -----------------------------------
+# Write this however reads best. It does not have to match the list above
+# line for line, but it should not contradict it.
+
+footer_summary:
+  - Mon · 10:00–16:00
+  - Tue & Wed · Closed
+  - Thu–Fri · 10:00–16:00
+  - Sat–Sun · 09:30–18:00

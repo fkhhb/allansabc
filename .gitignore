@@ -4,3 +4,6 @@ Thumbs.db
 .venv/
 __pycache__/
 node_modules/
+
+# Build tooling
+*.pyc

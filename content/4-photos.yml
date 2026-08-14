@@ -1,0 +1,116 @@
+# =============================================================================
+#  4. PHOTOS
+#  Every picture on the website, in one place.
+# =============================================================================
+#
+#  HOW TO SWAP A PHOTO
+#  -------------------
+#  1. Go to the folder  site/assets/img/  in GitHub.
+#  2. Click "Add file" -> "Upload files" and drop your new photo in.
+#  3. Come back here and change the "file:" line to your new file name.
+#
+#  EASIEST TRICK: name your new photo exactly the same as the old one
+#  (for example  hero-terrace.jpg  ) and upload it. Then you don't need to
+#  change anything in this file at all. The website just picks up the new one.
+#
+#  You can also point "file:" at a full web address if the photo lives
+#  somewhere else, for example:
+#      file: https://example.com/photos/new-terrace.jpg
+#
+#  ALWAYS write a "description:". It is read aloud to blind visitors and
+#  shown if the photo fails to load. Describe what is in the picture.
+#
+# =============================================================================
+
+
+# --- The big photo at the top of the page ------------------------------------
+
+hero:
+  file: assets/img/hero-terrace.jpg
+  description: Busy pavement terrace at Allan's ABC on Rykestraße, full tables under the trees
+
+
+# --- The photo next to the "about us" text -----------------------------------
+
+about:
+  file: assets/img/exterior-awning.jpg
+  description: Yellow-and-white striped awning and yellow bar stools outside Allan's ABC
+
+
+# --- Photo next to the rosé section ------------------------------------------
+
+rose:
+  file: assets/img/rose-can.jpg
+  description: ABC Rosé All Day label with a diver illustration on yellow stripes
+
+
+# --- Photo in the events / anniversary box -----------------------------------
+
+event:
+  file: assets/img/board-brunch.jpg
+  description: Chalkboard listing brunch apéro drinks and prices beside the teal bar
+
+
+# --- Photo at the bottom of the "come over" section --------------------------
+
+visit:
+  file: assets/img/exterior-front.jpg
+  description: Shopfront of Allan's ABC with striped awning and pavement seating
+
+
+# --- The dish photos ---------------------------------------------------------
+#  The name on the left (for example  dish-eggs-benny ) is what you type in
+#  the "photo:" line in 3-menu.yml. Change the file, keep the name.
+
+dishes:
+  dish-eggs-benny:
+    file: assets/img/dish-eggs-benny.jpg
+    description: Close-up of eggs Benedict with a running yolk on a brioche bun
+  dish-benny-salmon:
+    file: assets/img/dish-benny-salmon.jpg
+    description: Eggs Benedict with cured salmon, dill and hollandaise on a brioche bun
+  dish-french-toast:
+    file: assets/img/dish-french-toast.jpg
+    description: French toast with bacon, cream and rose petals on a yellow plate
+  dish-waffles:
+    file: assets/img/dish-waffles.jpg
+    description: Savoury open sandwich with poached egg and greens on a teal table
+  dish-croque:
+    file: assets/img/dish-croque.jpg
+    description: Toasted croque monsieur cut through, with lime and salad
+  dish-dessert:
+    file: assets/img/dish-dessert.jpg
+    description: Chocolate cake with cream, apricot and berries on a dark plate
+  dish-fish:
+    file: assets/img/dish-fish.jpg
+    description: Cured fish salad with red onion, herbs and citrus
+  dish-board:
+    file: assets/img/dish-board.jpg
+    description: Sharing board with cheese, grapes, walnuts, flatbread and chutney
+
+
+# --- The gallery -------------------------------------------------------------
+#  Add or remove entries freely. Each one starts with "- file:".
+#  The first and sixth photos are shown wide, the rest are square.
+
+gallery:
+  - file: assets/img/crowd-terrace.jpg
+    description: Guests eating and drinking at long outdoor tables on the terrace
+  - file: assets/img/interior-bar.jpg
+    description: Interior of Allan's ABC with teal bar, neon sign and rattan pendant lights
+  - file: assets/img/drink-frose.jpg
+    description: Hand holding a frozen rosé in a coupe glass
+  - file: assets/img/dish-board.jpg
+    description: Sharing board with cheese, grapes, walnuts, flatbread and chutney
+  - file: assets/img/drink-coffee.jpg
+    description: Cappuccino with leaf latte art in a teal cup
+  - file: assets/img/exterior-front.jpg
+    description: Shopfront of Allan's ABC with striped awning and pavement seating
+  - file: assets/img/drink-bloody-mary.jpg
+    description: Two Bloody Marys with lemon wedges on an outdoor table
+  - file: assets/img/neon-rose.jpg
+    description: Neon sign reading Rosé All Day Everyday above the bar
+  - file: assets/img/interior-room.jpg
+    description: Long communal table and teal bar inside Allan's ABC
+  - file: assets/img/drink-rose-table.jpg
+    description: Rosé being poured at a table set with sandwiches and salad
