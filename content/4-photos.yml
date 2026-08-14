@@ -30,8 +30,12 @@
 # --- The big photo at the top of the page ------------------------------------
 
 hero:
-  file: assets/img/hero-terrace.jpg
-  description: Yellow-and-white parasols over the pavement terrace on a bright day
+  file: assets/img/hero-drinks.jpg
+  description: Two iced drinks with dried lime wheels on a white table, brunch plates behind
+# The previous hero is still here if you want it back: just swap the two lines
+# above for these.
+#   file: assets/img/hero-terrace.jpg
+#   description: Yellow-and-white parasols over the pavement terrace on a bright day
 
 
 # --- The photo next to the "about us" text -----------------------------------
