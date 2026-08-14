@@ -75,16 +75,19 @@ book:
 
     - icon: 🎉
       heading: Events & big groups
-      text: Birthdays, weddings, work things, whole-venue takeovers. Email Allan directly and tell us what you're planning.
+      text: Birthdays, weddings, work things, whole-venue takeovers. Hit the button and a message opens ready to fill in, straight to Allan.
       buttons:
         - label: Email us
           link: EMAIL          # the word EMAIL becomes the events email address
           style: primary
-      show_email_underneath: yes
+      # Set to yes to print the address under the button. Off by default: the
+      # button already opens a pre-filled email, so showing the address only
+      # gives address harvesters something to find.
+      show_email_underneath: no
 
     - icon: 🧑‍🍳
       heading: Work with us
-      text: Always glad to hear from good people. Kitchen, floor or bar, tell us what you do and when you can start.
+      text: Always glad to hear from good people. Kitchen, floor or bar. Hit the button and tell us what you do and when you can start.
       buttons:
         - label: Send your CV
           link: EMAIL
