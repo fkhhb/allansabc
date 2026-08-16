@@ -294,6 +294,55 @@ def add_derived(data: dict) -> None:
     basics["scrolling_words_doubled"] = list(words) + list(words)
 
 
+def render_menu_pages(data: dict) -> list:
+    """Turn each menu PDF into page images.
+
+    Android hands PDF links to whichever viewer is installed, and some of those
+    reflow the layout and drop the right-hand price column. Serving pictures of
+    the pages means every device shows what the designer actually laid out.
+
+    Regenerated on every build, so uploading a new PDF is still the only step
+    needed to change the menu. If PyMuPDF is unavailable the build still
+    succeeds: the menu page falls back to whatever images are already there.
+    """
+    try:
+        import fitz
+    except ImportError:
+        print("  note: PyMuPDF not installed, reusing existing menu page images")
+        fitz = None
+
+    out_dir = SITE / "assets" / "menus" / "pages"
+    out_dir.mkdir(parents=True, exist_ok=True)
+    groups = []
+
+    titles = {"food": "Food menu", "drinks": "Drinks menu"}
+    for key in ("food", "drinks"):
+        entry = (data["menu"].get("menus") or {}).get(key) or {}
+        rel = entry.get("file")
+        if not rel:
+            continue
+        pdf = SITE / rel
+        images = []
+        if fitz and pdf.exists():
+            doc = fitz.open(pdf)
+            for i, page in enumerate(doc):
+                pm = page.get_pixmap(dpi=160)
+                name = f"{key}-{i + 1}.jpg"
+                pm.pil_save(out_dir / name, format="JPEG", quality=86,
+                            optimize=True, progressive=True)
+                images.append({"file": f"assets/menus/pages/{name}",
+                               "w": pm.width, "h": pm.height})
+            doc.close()
+        else:
+            for f in sorted(out_dir.glob(f"{key}-*.jpg")):
+                images.append({"file": f"assets/menus/pages/{f.name}",
+                               "w": 1323, "h": 1871})
+        if images:
+            groups.append({"id": key, "title": titles[key],
+                           "pdf": rel, "images": images})
+    return groups
+
+
 def main() -> int:
     data = load_content()
     if problems:
@@ -316,15 +365,22 @@ def main() -> int:
         lstrip_blocks=True,
         autoescape=True,
     )
+    menu_pages = render_menu_pages(data)
+
     template = env.get_template("index.html.j2")
     OUTPUT.write_text(template.render(**data), encoding="utf-8")
+
+    menu_tpl = env.get_template("menu.html.j2")
+    (SITE / "menu.html").write_text(
+        menu_tpl.render(menu_pages=menu_pages, **data), encoding="utf-8")
 
     dishes = len(data["menu"]["carousel_images"])
     gallery = len(data["photos"]["gallery"])
     open_days = sum(1 for d in data["opening_hours"]["days"] if not d.get("closed"))
     print("Website rebuilt successfully.")
     print(f"  {dishes} carousel photos, {gallery} gallery photos, open {open_days} days a week")
-    print(f"  Written to {OUTPUT.relative_to(ROOT)}")
+    print(f"  Written to {OUTPUT.relative_to(ROOT)} and site/menu.html")
+    print(f"  {sum(len(g['images']) for g in menu_pages)} menu page images rendered from the PDFs")
     return 0
 
 

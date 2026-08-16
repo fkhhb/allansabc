@@ -1,0 +1,101 @@
+{#
+  The menu page.
+
+  Why this exists: Android hands PDF links off to whichever viewer is installed,
+  and some of those reflow the page and drop the right-hand price column. The
+  menus are pictures here, so every device shows exactly what the designer laid
+  out. The PDFs are still linked for anyone who wants to save or search them,
+  and they remain the accessible route, since a picture of text is not readable
+  by a screen reader.
+
+  The page images are regenerated from the PDFs by build.py, so uploading a new
+  PDF is still the only step needed to update the menu.
+#}
+{% set b = the_basics %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Menus · {{ b.name }}</title>
+<meta name="description" content="Food and drinks menus for {{ b.name }}, {{ b.address.street }}, {{ b.address.area }}.">
+<link rel="canonical" href="https://allansabc.com/menu.html">
+<meta name="theme-color" content="#8ED7D2">
+
+<link rel="icon" href="assets/logo/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Kaushan+Script&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/patterns.css">
+<link rel="stylesheet" href="css/main.css">
+<script>document.documentElement.classList.add('js');</script>
+</head>
+
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="header">
+  <div class="wrap header__inner">
+    <a class="header__logo" href="index.html" aria-label="{{ b.name }}, home">
+      <img src="assets/logo/allans-heart-logo.png" alt="" width="46" height="41">
+      <span class="header__logo-text">{{ b.name }}</span>
+    </a>
+    <div class="header__cta" style="margin-left:auto">
+      <a class="btn btn--primary" href="index.html">Back to the site</a>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <section class="section section--tight">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="kicker">{{ menu.kicker }}</p>
+        <h2>Menus</h2>
+        <p class="lead">{{ menu.menu_note }}</p>
+      </div>
+
+      <nav class="menu-tabs" aria-label="Menus">
+        <a class="btn btn--primary" href="#food">Food</a>
+        <a class="btn btn--secondary" href="#drinks">Drinks</a>
+      </nav>
+
+{% for group in menu_pages %}
+      <section class="menu-doc" id="{{ group.id }}">
+        <div class="menu-doc__head">
+          <h3>{{ group.title }}</h3>
+          <a class="btn btn--ghost" href="{{ group.pdf }}" target="_blank" rel="noopener">
+            Open the PDF<span class="visually-hidden"> (opens in a new tab)</span>
+          </a>
+        </div>
+{% for img in group.images %}
+        <figure class="menu-page">
+          <img src="{{ img.file }}" width="{{ img.w }}" height="{{ img.h }}"
+               alt="{{ group.title }}, page {{ loop.index }} of {{ group.images | length }}"
+               loading="{{ 'eager' if loop.first and group.id == 'food' else 'lazy' }}">
+        </figure>
+{% endfor %}
+      </section>
+{% endfor %}
+
+      <p class="menu-note">
+        Prices change with the seasons. The board inside is always the last word.
+      </p>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer__bottom" style="margin-top:0;border-top:0">
+      <p>© <span id="year">2026</span> {{ b.name }}</p>
+      <p><a href="index.html">Back to the site</a></p>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js" defer></script>
+</body>
+</html>
