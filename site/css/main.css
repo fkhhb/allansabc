@@ -617,6 +617,70 @@ h3 { font-size: var(--fs-h3); }
   color: var(--text-muted);
 }
 
+/* --- Menu page (menu.html) ------------------------------------------------
+   The menus are shown as page images, never as an embedded PDF. Android hands
+   PDF links to whichever viewer happens to be installed, and some of those
+   reflow the layout and drop the right-hand price column. The PDF itself stays
+   one tap away and opens in its own tab, so it is a destination, not part of
+   the page.
+
+   The page images are the loudest thing here, so everything around them is
+   given room: the tabs breathe above, each menu's heading sits on its own rule,
+   and consecutive pages are spaced rather than stacked edge to edge. Spacing
+   uses the same --sp scale as the rest of the site and eases down on phones.
+   -------------------------------------------------------------------------- */
+.menu-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2);
+  margin-bottom: var(--sp-6);
+}
+
+.menu-doc {
+  margin-bottom: var(--sp-7);
+  /* the header is sticky, so #food / #drinks need room to clear it */
+  scroll-margin-top: clamp(5rem, 8vw, 7rem);
+}
+.menu-doc:last-of-type { margin-bottom: var(--sp-5); }
+
+.menu-doc__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-2);
+  margin-bottom: var(--sp-4);
+  padding-bottom: var(--sp-2);
+  border-bottom: 2px solid var(--rule);
+}
+.menu-doc__head h3 { margin: 0; }
+
+/* Capped rather than full-bleed: a page image stretched to the 1240px wrap is
+   larger than the sheet ever is in the hand, and the type starts to look loose. */
+.menu-page {
+  margin: 0 auto var(--sp-4);
+  max-width: 760px;
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--abc-sand);
+  box-shadow: var(--shadow);
+}
+.menu-page:last-child { margin-bottom: 0; }
+.menu-page img { display: block; width: 100%; height: auto; }
+
+.menu-doc + .menu-note { margin-top: var(--sp-5); }
+
+@media (max-width: 599px) {
+  .menu-tabs { margin-bottom: var(--sp-5); }
+  .menu-doc { margin-bottom: var(--sp-6); }
+  .menu-doc:last-of-type { margin-bottom: var(--sp-4); }
+  .menu-doc__head { margin-bottom: var(--sp-3); }
+  .menu-page { margin-bottom: var(--sp-3); }
+  /* full-width taps, and the tabs split the row evenly */
+  .menu-tabs .btn { flex: 1 1 auto; justify-content: center; }
+  .menu-doc__head .btn { width: 100%; justify-content: center; }
+}
+
 /* --- Gallery -------------------------------------------------------------- */
 .gallery {
   display: grid;
