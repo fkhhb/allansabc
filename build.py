@@ -311,6 +311,17 @@ def render_menu_pages(data: dict) -> list:
         print("  note: PyMuPDF not installed, reusing existing menu page images")
         fitz = None
 
+    # Pillow writes a smaller file (progressive, optimised: ~300KB a page against
+    # ~380KB), but it is a separate install. When it is missing, PyMuPDF's own
+    # JPEG encoder produces the same picture, so the build carries on rather than
+    # failing over a file-size optimisation.
+    try:
+        import PIL  # noqa: F401
+        have_pillow = True
+    except ImportError:
+        have_pillow = False
+        print("  note: Pillow not installed, using PyMuPDF's own JPEG encoder")
+
     out_dir = SITE / "assets" / "menus" / "pages"
     out_dir.mkdir(parents=True, exist_ok=True)
     groups = []
@@ -328,8 +339,11 @@ def render_menu_pages(data: dict) -> list:
             for i, page in enumerate(doc):
                 pm = page.get_pixmap(dpi=160)
                 name = f"{key}-{i + 1}.jpg"
-                pm.pil_save(out_dir / name, format="JPEG", quality=86,
-                            optimize=True, progressive=True)
+                if have_pillow:
+                    pm.pil_save(out_dir / name, format="JPEG", quality=86,
+                                optimize=True, progressive=True)
+                else:
+                    pm.save(out_dir / name, jpg_quality=86)
                 images.append({"file": f"assets/menus/pages/{name}",
                                "w": pm.width, "h": pm.height})
             doc.close()
