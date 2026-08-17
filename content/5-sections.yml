@@ -37,11 +37,13 @@ gallery:
 
 event:
   show: yes
-  date_line: Saturday 5 September · 11:00–20:00
+  # The date is not fixed yet. When it is, put it here in place of
+  # "Date coming soon" and update the badge text in 1-the-basics.yml too.
+  date_line: Date coming soon
   heading: Ten years of Allan's
-  text: A decade on Rykestraße. Doors at eleven, open till eight. Food, a great deal of rosé, records, and everyone who has kept the place going since 2015.
-  handwritten_line: Book your spot or just drop by.
-  button_label: Save your spot
+  text: A decade on Rykestraße. Food, a great deal of rosé, records, and everyone who has kept the place going since 2015. We are still settling on the day, so consider this fair warning.
+  handwritten_line: We'll shout as soon as it's set.
+  button_label: Follow for the date
   button_link: https://www.instagram.com/allans_abc/
 
 

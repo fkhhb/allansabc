@@ -123,8 +123,11 @@ Things a human needs to decide or verify before this is fully finished:
    `2-opening-hours.yml`, so correcting the hours corrects the copy too.
 4. **Phone number.** None published anywhere. Bookings currently route to
    Instagram and Facebook DMs, which matches how they actually operate.
-5. **Anniversary date.** Sunday 6 September 2026, 11:00–20:00, taken from their
-   own Instagram. Worth a sanity check before it goes on the homepage.
+5. **Anniversary date.** Not fixed. Instagram said 6 September 2026, the venue
+   says that is off and it will most likely land in October. The homepage badge
+   and event box therefore say "date coming soon". Put the real date into
+   `content/5-sections.yml` (`event.date_line`) and `content/1-the-basics.yml`
+   (`badge.text`) once it is decided.
 6. **Fish Evening** is deliberately held until January. See `site/_modules/README.md`.
 
 ## Conventions
