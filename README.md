@@ -12,12 +12,17 @@ Rykestraße 13, 10405 Berlin.
 
 ## For the restaurant: how to change the website
 
-Everything you'd want to edit lives in **`content/`**. Open that folder and read
-its `README.md`. Change a file, click *Commit changes*, and the live site updates
-itself in about a minute. If you make a mistake it refuses to publish and the
-current site stays up untouched.
+Everything you'd want to edit lives in **[`content/`](content/README.md)**. Open
+that folder and read its `README.md`: it lists every file with a link that opens
+it straight in GitHub's editor. Change a line, click *Commit changes*, and the
+live site updates itself in about a minute. If you make a mistake it refuses to
+publish and the current site stays up untouched.
 
 You never need to open any other folder.
+
+Whoever is doing the editing needs write access to this repository: GitHub →
+Settings → Collaborators → Add people. Without it, GitHub offers them a fork and
+a pull request instead of a straight edit, which works but is a detour.
 
 ---
 

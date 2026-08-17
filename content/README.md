@@ -15,22 +15,37 @@ You do not need to know how to code, and you cannot break the website from here.
 
 That's it. There is no step 6.
 
+**Faster:** the links in the next table skip steps 1 and 2. They open the file
+with the pencil already clicked, so you land straight in the editor.
+
 ---
 
 ## Which file do I want?
 
+Click the file name. It opens ready to type in.
+
 | I want to change... | Open this file |
 |---|---|
-| A dish, its description, or a price | `3-menu.yml` |
-| The food or drinks menu PDF | `3-menu.yml` (and upload the PDF, see below) |
-| Opening hours | `2-opening-hours.yml` |
-| Any photo on the site | `4-photos.yml` |
-| Address, Instagram, Wolt or email links | `1-the-basics.yml` |
-| The big title, tagline, or "about us" text | `1-the-basics.yml` |
-| The event box, booking boxes, cash-only notice | `5-sections.yml` |
-| The little facts at the bottom (dogs, terrace, parking) | `5-sections.yml`, under `facts:` |
+| A dish, its description, or a price | [`3-menu.yml`](https://github.com/fkhhb/allansabc/edit/main/content/3-menu.yml) |
+| The food or drinks menu PDF | [`3-menu.yml`](https://github.com/fkhhb/allansabc/edit/main/content/3-menu.yml) (and upload the PDF, see below) |
+| Opening hours | [`2-opening-hours.yml`](https://github.com/fkhhb/allansabc/edit/main/content/2-opening-hours.yml) |
+| Any photo on the site | [`4-photos.yml`](https://github.com/fkhhb/allansabc/edit/main/content/4-photos.yml) |
+| Address, Instagram, Wolt or email links | [`1-the-basics.yml`](https://github.com/fkhhb/allansabc/edit/main/content/1-the-basics.yml) |
+| The big title, tagline, or "about us" text | [`1-the-basics.yml`](https://github.com/fkhhb/allansabc/edit/main/content/1-the-basics.yml) |
+| The event box, booking boxes, cash-only notice | [`5-sections.yml`](https://github.com/fkhhb/allansabc/edit/main/content/5-sections.yml) |
+| The little facts at the bottom (dogs, terrace, parking) | [`5-sections.yml`](https://github.com/fkhhb/allansabc/edit/main/content/5-sections.yml), under `facts:` |
 | The anniversary date, once it is decided | Two files, see "Putting the anniversary date in" |
-| Hide a whole section for a while | `5-sections.yml` (see "Turning things off") |
+| Hide a whole section for a while | [`5-sections.yml`](https://github.com/fkhhb/allansabc/edit/main/content/5-sections.yml) (see "Turning things off") |
+
+If a link asks you to sign in, sign in to GitHub first and click it again. If it
+says **"You must fork this repository to propose changes"**, you are not on the
+list of people allowed to edit it yet. Ask Fritz to add you, it takes a minute.
+
+**Did it work?** After you commit, the
+[Actions tab](https://github.com/fkhhb/allansabc/actions) shows a yellow dot
+while it publishes and a green tick when your change is live. A red ✗ means it
+refused to publish, and the site is still up exactly as it was. Click the red
+entry and it tells you which line to fix.
 
 ---
 
@@ -144,14 +159,14 @@ the `file:` lines in `3-menu.yml` to match.
 The date is not fixed, so the site says **"date coming soon"** in two places.
 When the day is decided, change both. They are the only two lines involved.
 
-In `5-sections.yml`:
+In [`5-sections.yml`](https://github.com/fkhhb/allansabc/edit/main/content/5-sections.yml):
 
 ```yaml
 event:
   date_line: Saturday 10 October · 11:00–20:00      ← was: Date coming soon
 ```
 
-In `1-the-basics.yml`:
+In [`1-the-basics.yml`](https://github.com/fkhhb/allansabc/edit/main/content/1-the-basics.yml):
 
 ```yaml
 badge:
