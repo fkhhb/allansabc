@@ -137,6 +137,34 @@ the `file:` lines in `3-menu.yml` to match.
 
 ---
 
+## Putting the anniversary date in
+
+The date is not fixed, so the site says **"date coming soon"** in two places.
+When the day is decided, change both. They are the only two lines involved.
+
+In `5-sections.yml`:
+
+```yaml
+event:
+  date_line: Saturday 10 October · 11:00–20:00      ← was: Date coming soon
+```
+
+In `1-the-basics.yml`:
+
+```yaml
+badge:
+  text: ★ 10 years · Sat 10 Oct                     ← was: ★ 10 years · Date coming soon
+```
+
+Keep the badge short. It sits on the photo at the top of the homepage and it is
+one line, so a long date will crowd it.
+
+While you're there, `event.text` says "we are still settling on the day" and the
+button says "Follow for the date". Once the date is up, that paragraph can lose
+its last sentence, and the button reads better as `Save your spot`.
+
+---
+
 ## Turning things off
 
 In `5-sections.yml`, anything with `show:` can be switched off:

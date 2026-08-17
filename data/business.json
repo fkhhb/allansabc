@@ -18,7 +18,7 @@
     "facebook_intro": "Day drinking Brunch spot.",
     "google_description": "Popular brunches with eggs, bagels & craft coffee, plus German wines, at a trendy modern cafe/bar.",
     "founded": "2015",
-    "founded_evidence": "10-year anniversary announced for 6 Sept 2026; Facebook page created 20 Dec 2014.",
+    "founded_evidence": "10-year anniversary flyer posted for 6 Sept 2026 (party date since moved, see events.upcoming); Facebook page created 20 Dec 2014.",
     "anniversary_2026": "10 years"
   },
   "location": {
@@ -270,11 +270,11 @@
     "upcoming": [
       {
         "title": "10 Years of Allan's ABC",
-        "date": "2026-09-05",
-        "day": "Saturday",
-        "time": "11:00–20:00",
-        "description": "Ten-year anniversary party. Book your spot or drop by.",
-        "source": "Client confirmation, 14 Aug 2026 (supersedes the 6 Sept date on the Instagram flyer)",
+        "date": null,
+        "day": null,
+        "time": null,
+        "description": "Ten-year anniversary party. Date not fixed yet.",
+        "source": "Client, 17 Aug 2026: the 5 Sept date is off and the new one is undecided, most likely October. Supersedes both the 5 Sept client confirmation of 14 Aug and the 6 Sept Instagram flyer. NEEDS_CONFIRMATION.",
         "featured": true
       }
     ],
