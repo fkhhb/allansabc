@@ -66,12 +66,23 @@ scripts/
 ## Running it locally
 
 ```bash
-python3 -m pip install pyyaml jinja2
+python3 -m pip install pyyaml jinja2 pymupdf pillow
 python3 build.py
 cd site && python3 -m http.server 8765
 ```
 
 Then open http://localhost:8765
+
+`pyyaml` and `jinja2` are required. The other two only matter for the menu pages:
+`pymupdf` renders `site/assets/menus/*.pdf` into the page images used by
+`menu.html`, and `pillow` shrinks them. Without those, `build.py` prints a note
+and reuses the images already committed, which is fine unless you have just
+swapped a PDF. The deploy workflow installs all four, so CI always renders them.
+
+`site/index.html` and `site/menu.html` are generated, but committed. The workflow
+rebuilds them on every push, so a content-only commit publishes correctly either
+way. If you edit `content/` locally, run `build.py` before committing so the
+tracked output doesn't drift.
 
 ## Deploying
 

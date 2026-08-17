@@ -28,6 +28,8 @@ That's it. There is no step 6.
 | Address, Instagram, Wolt or email links | `1-the-basics.yml` |
 | The big title, tagline, or "about us" text | `1-the-basics.yml` |
 | The event box, booking boxes, cash-only notice | `5-sections.yml` |
+| The little facts at the bottom (dogs, terrace, parking) | `5-sections.yml`, under `facts:` |
+| The anniversary date, once it is decided | Two files, see "Putting the anniversary date in" |
 | Hide a whole section for a while | `5-sections.yml` (see "Turning things off") |
 
 ---
